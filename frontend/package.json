@@ -1,0 +1,9 @@
+{
+  "name": "frontend-proxy",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "cd \"lm9wed jdid\" && npm run dev",
+    "build": "cd \"lm9wed jdid\" && npm run build",
+    "install": "cd \"lm9wed jdid\" && npm install"
+  }
+}
