@@ -1,0 +1,174 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600&display=swap');
+@config "../../tailwind.config.js";
+
+/* ─── Google Fonts ──────────────────────────────────────────── */
+
+@theme {
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans:    "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ─── CSS Custom Properties ─────────────────────────────────── */
+:root {
+  --gradient-hero: 
+    radial-gradient(ellipse 80% 60% at 30% -10%, rgba(30,58,138,.10) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 110%, rgba(212,160,23,.08) 0%, transparent 60%);
+
+  --gradient-mesh:
+    radial-gradient(at 0% 0%,   rgba(30,58,138,.08) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(212,160,23,.06) 0px, transparent 50%),
+    radial-gradient(at 50% 100%,rgba(30,58,138,.05) 0px, transparent 50%);
+
+  --blur-glass: blur(20px) saturate(180%);
+  --transition-base: 200ms cubic-bezier(0.4,0,0.2,1);
+  --transition-spring: 300ms cubic-bezier(0.34,1.56,0.64,1);
+}
+
+/* ─── Base ──────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "cv11", "ss01", "kern";
+}
+
+body {
+  background-color: #F8FAFD;
+  color: #0F172A;
+}
+
+/* ─── Base Layer ────────────────────────────────────────────── */
+@layer base {
+  h1, h2, h3, h4, h5 {
+    @apply font-display tracking-tight;
+    line-height: 1.15;
+  }
+  p { line-height: 1.7; }
+  
+  ::selection {
+    @apply bg-primary-500 text-white;
+  }
+  
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent-400 ring-offset-2 ring-offset-white rounded-lg;
+  }
+
+  /* Dark mode surface */
+  .dark body {
+    @apply bg-primary-950 text-white;
+  }
+}
+
+/* ─── Components Layer ──────────────────────────────────────── */
+@layer components {
+
+  /* Glassmorphism */
+  .glass {
+    background: rgba(255,255,255,0.72);
+    backdrop-filter: var(--blur-glass);
+    -webkit-backdrop-filter: var(--blur-glass);
+    border: 1px solid rgba(255,255,255,0.50);
+  }
+  .glass-dark {
+    background: rgba(9,24,63,0.70);
+    backdrop-filter: var(--blur-glass);
+    -webkit-backdrop-filter: var(--blur-glass);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* Chip / pill label */
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold;
+  }
+
+  /* Skip nav */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[999]
+           focus:bg-primary-600 focus:text-white focus:px-5 focus:py-3 focus:rounded-xl
+           focus:shadow-lg focus:font-medium;
+  }
+
+  /* Grid overlay texture */
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(30,58,138,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(30,58,138,.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .dot-bg {
+    background-image: radial-gradient(rgba(30,58,138,.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Section header */
+  .section-eyebrow {
+    @apply text-xs font-bold uppercase tracking-[0.15em] text-accent-600;
+  }
+  .section-title {
+    @apply font-display text-3xl md:text-4xl lg:text-5xl font-bold text-ink leading-[1.1];
+  }
+  .section-lead {
+    @apply text-lg text-ink-soft leading-relaxed;
+  }
+
+  /* Card base */
+  .card {
+    @apply rounded-lg border border-surface-border bg-white shadow-xs
+           hover:border-primary-200 transition-colors duration-200;
+  }
+
+  /* Badge/pill token */
+  .badge-primary { @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold bg-primary-50 text-primary-700 border border-primary-100; }
+  .badge-accent  { @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold bg-accent-50  text-accent-700  border border-accent-100; }
+  .badge-teal    { @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold bg-teal-50    text-teal-700    border border-teal-100; }
+
+  /* Nav link */
+  .nav-link {
+    @apply px-3.5 py-2 rounded-xl text-sm font-medium text-ink-soft transition-all
+           hover:text-ink hover:bg-surface-subtle;
+  }
+  .nav-link-active {
+    @apply text-primary-700 bg-primary-50 font-semibold;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-transparent;
+  }
+  .gradient-text-gold {
+    @apply bg-gradient-to-r from-accent-500 to-accent-300 bg-clip-text text-transparent;
+  }
+
+  /* Highlight underline */
+  .underline-accent {
+    @apply relative;
+  }
+  .underline-accent::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-[3px] rounded-full bg-accent-400;
+  }
+}
+
+/* ─── Dark Mode Overrides ───────────────────────────────────── */
+@layer base {
+  .dark .card {
+    @apply bg-primary-900/60 border-white/8 text-white;
+  }
+  .dark .section-title { @apply text-white; }
+  .dark .section-lead  { @apply text-primary-200; }
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { @apply bg-surface-border rounded-full; }
+::-webkit-scrollbar-thumb:hover { @apply bg-ink-muted; }
+
+/* ─── Reduced Motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

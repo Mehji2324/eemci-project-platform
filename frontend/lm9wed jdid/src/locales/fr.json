@@ -1,0 +1,143 @@
+{
+  "nav": {
+    "school": "L'École",
+    "schools": "Nos Écoles",
+    "programs": "Formations",
+    "admissions": "Admissions",
+    "alumni": "Alumni",
+    "contact": "Contact",
+    "news": "Actualités",
+    "about": "À propos",
+    "history_mission": "Notre histoire et notre mission",
+    "alumni_desc": "1 200+ diplômés actifs",
+    "level_bac": "Technicien (Bac)",
+    "level_bac_desc": "Formation courte opérationnelle",
+    "level_ts": "Technicien Spécialisé (Bac+2)",
+    "level_ts_desc": "Diplôme d'État marocain",
+    "level_bachelor": "Bachelor (Bac+3)",
+    "level_bachelor_desc": "Double diplôme franco-marocain",
+    "level_master": "Master (Bac+5)",
+    "level_master_desc": "Master européen expert",
+    "level_doctorate": "Doctorat (Bac+8)",
+    "level_doctorate_desc": "Recherche avancée",
+    "apply": "S'inscrire",
+    "login": "Connexion",
+    "register_now": "S'inscrire maintenant"
+  },
+  "hero": {
+    "badge": "Rentrée 2026 — Candidatures ouvertes",
+    "title_part1": "L'école supérieure",
+    "title_part2": "qui fait la",
+    "title_diff": "différence",
+    "tagline": "De Meknès au monde — Management, Commerce, IT et Hôtellerie & Tourisme. Diplômes accrédités par l'État marocain, reconnus en Europe.",
+    "explore": "Explorer les formations",
+    "apply_now": "Candidater maintenant",
+    "graduates_count": "1 200+",
+    "graduates_label": "Diplômés actifs",
+    "years_count": "14",
+    "years_label": "ans",
+    "excellence": "d'excellence",
+    "programs_count": "25+",
+    "programs_label": "Programmes",
+    "discover": "Découvrir",
+    "scroll_down": "Défiler vers le bas",
+    "img_alt": "Étudiants EEMCI en cours"
+  },
+  "stats": {
+    "stat_0": { "label": "Années d'expérience", "sub": "Depuis 2011" },
+    "stat_1": { "label": "Écoles d'excellence", "sub": "Management & Hôtellerie" },
+    "stat_2": { "label": "Programmes diplômants", "sub": "Bac à Bac+8" },
+    "stat_3": { "label": "Diplômés actifs", "sub": "Au Maroc & à l'international" }
+  },
+  "pillars": {
+    "eyebrow": "Pourquoi EEMCI",
+    "title": "L'excellence à portée de tous",
+    "lead": "Six engagements concrets qui structurent notre pédagogie et notre accompagnement.",
+    "pillar_0": { "title": "Double diplôme FR-MA", "text": "Diplômes accrédités par l'État marocain et reconnus en France via nos partenaires européens." },
+    "pillar_1": { "title": "Pédagogie pratique", "text": "Enseignants professionnels du terrain, projets réels et stages encadrés." },
+    "pillar_2": { "title": "Réseau européen", "text": "FEDE, WES'SUP et institutions partenaires garantissent une mobilité internationale." },
+    "pillar_3": { "title": "Suivi personnalisé", "text": "Accompagnement individuel de l'inscription jusqu'à l'insertion professionnelle." },
+    "pillar_4": { "title": "Campus en ville nouvelle", "text": "Salles équipées pour le travail collaboratif et la pratique professionnelle." },
+    "pillar_5": { "title": "Insertion professionnelle", "text": "Plus de 90 % de nos diplômés en activité dans les 6 mois." }
+  },
+  "schools": {
+    "eyebrow": "Nos écoles",
+    "title": "Deux écoles, un même standard d'excellence",
+    "lead": "Choisissez votre voie au sein d'institutions accréditées et reconnues à l'international.",
+    "discover": "Découvrir l'école",
+    "school_0": {
+      "name": "École de Management, Commerce & IT",
+      "short": "Management, Finance, Marketing, Ressources Humaines, Commerce International et Informatique.",
+      "bullets": ["Bachelor Européen","Master Européen","Doctorat Européen","Classes Préparatoires"]
+    },
+    "school_1": {
+      "name": "École d'Hôtellerie & Tourisme",
+      "short": "Formez-vous aux métiers du tourisme, de l'hôtellerie et du management hôtelier international.",
+      "bullets": ["Management Hôtelier","Tourisme Culturel","Stratégies Touristiques","Gestion d'établissement"]
+    }
+  },
+  "showcase": {
+    "eyebrow": "Programmes",
+    "title": "Une formation pour chaque ambition",
+    "lead": "Bac+2 à Bac+8 — choisissez parmi nos parcours accrédités et reconnus en Europe.",
+    "all_programs": "Tous les programmes",
+    "levels": {
+      "Tous": "Tous",
+      "Bac+2": "Bac+2",
+      "Bac+3": "Bac+3",
+      "Bac+5": "Bac+5",
+      "Bac+8": "Bac+8"
+    }
+  },
+  "testimonials": {
+    "eyebrow": "Alumni",
+    "title": "Ils racontent leur réussite",
+    "lead": "Nos diplômés témoignent de leur parcours et de leur insertion professionnelle.",
+    "items": {
+      "Mehdi B.": { "role": "Analyste sécurité, multinationale", "quote": "L'EEMCI m'a donné une formation solide et un double diplôme qui a fait la différence en entretien." },
+      "Salma K.": { "role": "Banquière, Casablanca", "quote": "Les stages encadrés et le réseau de l'école m'ont permis de décrocher un poste dans une grande banque." },
+      "Youssef M.": { "role": "Export Manager, agroalimentaire", "quote": "Diplômé en Commerce International, je suis Export Manager dans une entreprise agroalimentaire. Les cours étaient alignés sur les besoins réels du marché." },
+      "Leila T.": { "role": "Social media strategist, startup", "quote": "Grâce au Bachelor Marketing Digital, je gère aujourd'hui toute la stratégie social media d'une startup en pleine croissance. EEMCI, c'est du concret !" },
+      "Omar R.": { "role": "Chef de projet IT, éditeur logiciels", "quote": "Mon Master en Développement Informatique m'a propulsé Chef de Projet IT. L'encadrement des profs était top niveau." }
+    }
+  },
+  "partners": {
+    "eyebrow": "Nos Partenaires",
+    "title": "Un réseau européen & professionnel",
+    "lead": "Des partenariats académiques, industriels et institutionnels qui valident la qualité de nos formations et ouvrent des portes à l'international.",
+    "categories": {
+      "Académique": "Académique",
+      "Entreprise": "Entreprise",
+      "Certification": "Certification",
+      "Institutionnel": "Institutionnel"
+    },
+    "accreditation": {
+      "title2": "Accréditations & Reconnaissances",
+      "title": "Diplômes reconnus par l'État marocain et l'Europe",
+      "desc": "Nos programmes sont accrédités par le Ministère de l'Éducation Nationale du Maroc et reconnus en Europe via nos partenaires de la FEDE.",
+      "items": {
+        "Accrédité Maroc": "Accrédité Maroc",
+        "Reconnu Europe": "Reconnu Europe",
+        "Membre FEDE": "Membre FEDE",
+        "Double Diplôme FR–MA": "Double Diplôme FR–MA"
+      }
+    }
+  },
+  "ctaband": {
+    "title": "Prêt à donner un nouveau cap à votre avenir ?",
+    "lead": "Rentrée 2026 ouverte. Déposez votre candidature en moins de 10 minutes.",
+    "apply": "Candidater",
+    "contact": "Nous contacter"
+  },
+  "common": {
+    "logout": "Déconnexion",
+    "accredited": "Accrédité État marocain",
+    "double_degree": "Double diplôme FR–MA",
+    "fede_member": "Membre FEDE",
+    "phone": "+212 535 40 04 17",
+    "email": "contact@eemci.ma",
+    "toggle_theme": "Basculer thème",
+    "open_menu": "Ouvrir menu",
+    "close": "Fermer"
+  }
+}

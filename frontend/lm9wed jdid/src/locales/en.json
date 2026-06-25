@@ -1,0 +1,143 @@
+{
+  "nav": {
+    "school": "The School",
+    "schools": "Our Schools",
+    "programs": "Programs",
+    "admissions": "Admissions",
+    "alumni": "Alumni",
+    "contact": "Contact",
+    "news": "News",
+    "about": "About",
+    "history_mission": "Our history and mission",
+    "alumni_desc": "1,200+ active graduates",
+    "level_bac": "Technician (High School)",
+    "level_bac_desc": "Operational short-term training",
+    "level_ts": "Specialized Technician (Bac+2)",
+    "level_ts_desc": "Moroccan State Diploma",
+    "level_bachelor": "Bachelor (Bac+3)",
+    "level_bachelor_desc": "Double Franco-Moroccan degree",
+    "level_master": "Master (Bac+5)",
+    "level_master_desc": "European expert Master",
+    "level_doctorate": "PhD (Bac+8)",
+    "level_doctorate_desc": "Advanced research",
+    "apply": "Apply",
+    "login": "Login",
+    "register_now": "Register now"
+  },
+  "hero": {
+    "badge": "2026 Intake — Applications open",
+    "title_part1": "The graduate school",
+    "title_part2": "that makes a",
+    "title_diff": "difference",
+    "tagline": "From Meknes to the world — Management, Commerce, IT and Hospitality & Tourism. Moroccan state accredited degrees, recognized in Europe.",
+    "explore": "Explore programs",
+    "apply_now": "Apply now",
+    "graduates_count": "1,200+",
+    "graduates_label": "Active graduates",
+    "years_count": "14",
+    "years_label": "years",
+    "excellence": "of excellence",
+    "programs_count": "25+",
+    "programs_label": "Programs",
+    "discover": "Discover",
+    "scroll_down": "Scroll down",
+    "img_alt": "EEMCI students in class"
+  },
+  "stats": {
+    "stat_0": { "label": "Years of experience", "sub": "Since 2011" },
+    "stat_1": { "label": "Schools of excellence", "sub": "Management & Hospitality" },
+    "stat_2": { "label": "Degree programs", "sub": "Bac to Bac+8" },
+    "stat_3": { "label": "Active graduates", "sub": "In Morocco & abroad" }
+  },
+  "pillars": {
+    "eyebrow": "Why EEMCI",
+    "title": "Excellence within everyone's reach",
+    "lead": "Six concrete commitments that structure our pedagogy and our support.",
+    "pillar_0": { "title": "Double FR-MA degree", "text": "Degrees accredited by the Moroccan State and recognized in France via our European partners." },
+    "pillar_1": { "title": "Practical pedagogy", "text": "Professional teachers from the field, real projects and supervised internships." },
+    "pillar_2": { "title": "European network", "text": "FEDE, WES'SUP and partner institutions guarantee international mobility." },
+    "pillar_3": { "title": "Personalized follow-up", "text": "Individual support from registration to professional integration." },
+    "pillar_4": { "title": "Campus in the new city", "text": "Rooms equipped for collaborative work and professional practice." },
+    "pillar_5": { "title": "Professional integration", "text": "More than 90% of our graduates in activity within 6 months." }
+  },
+  "schools": {
+    "eyebrow": "Our Schools",
+    "title": "Two schools, one standard of excellence",
+    "lead": "Choose your path within accredited and internationally recognized institutions.",
+    "discover": "Discover the school",
+    "school_0": {
+      "name": "School of Management, Commerce & IT",
+      "short": "Management, Finance, Marketing, Human Resources, International Trade and IT.",
+      "bullets": ["European Bachelor","European Master","European PhD","Preparatory Classes"]
+    },
+    "school_1": {
+      "name": "School of Hospitality & Tourism",
+      "short": "Train for careers in tourism, hospitality and international hotel management.",
+      "bullets": ["Hotel Management","Cultural Tourism","Tourism Strategies","Establishment Management"]
+    }
+  },
+  "showcase": {
+    "eyebrow": "Programs",
+    "title": "A training for every ambition",
+    "lead": "Bac+2 to Bac+8 — choose from our accredited and recognized programs in Europe.",
+    "all_programs": "All programs",
+    "levels": {
+      "Tous": "All",
+      "Bac+2": "Bac+2",
+      "Bac+3": "Bac+3",
+      "Bac+5": "Bac+5",
+      "Bac+8": "Bac+8"
+    }
+  },
+  "testimonials": {
+    "eyebrow": "Alumni",
+    "title": "They tell their success stories",
+    "lead": "Our graduates testify to their journey and their professional integration.",
+    "items": {
+      "Mehdi B.": { "role": "Security Analyst, Multinational", "quote": "EEMCI gave me a solid training and a double degree that made the difference in interviews." },
+      "Salma K.": { "role": "Banker, Casablanca", "quote": "The supervised internships and the school's network allowed me to secure a position in a major bank." },
+      "Youssef M.": { "role": "Export Manager, Agribusiness", "quote": "Graduated in International Trade, I am an Export Manager in an agribusiness company. The courses were aligned with the real needs of the market." },
+      "Leila T.": { "role": "Social media strategist, Startup", "quote": "Thanks to the Bachelor in Digital Marketing, I now manage the entire social media strategy of a fast-growing startup. EEMCI is concrete!" },
+      "Omar R.": { "role": "IT Project Manager, Software Publisher", "quote": "My Master's in Computer Science propelled me to IT Project Manager. The supervision from teachers was top level." }
+    }
+  },
+  "partners": {
+    "eyebrow": "Our Partners",
+    "title": "A European & Professional Network",
+    "lead": "Academic, industrial and institutional partnerships that validate the quality of our training and open doors internationally.",
+    "categories": {
+      "Académique": "Academic",
+      "Entreprise": "Company",
+      "Certification": "Certification",
+      "Institutionnel": "Institutional"
+    },
+    "accreditation": {
+      "title2": "Accreditations & Recognitions",
+      "title": "Degrees recognized by the Moroccan State and Europe",
+      "desc": "Our programs are accredited by the Ministry of National Education of Morocco and recognized in Europe via our FEDE partners.",
+      "items": {
+        "Accrédité Maroc": "Accredited Morocco",
+        "Reconnu Europe": "Recognized Europe",
+        "Membre FEDE": "FEDE Member",
+        "Double Diplôme FR–MA": "Double Degree FR–MA"
+      }
+    }
+  },
+  "ctaband": {
+    "title": "Ready to give a new direction to your future?",
+    "lead": "2026 Intake open. Submit your application in less than 10 minutes.",
+    "apply": "Apply",
+    "contact": "Contact us"
+  },
+  "common": {
+    "logout": "Logout",
+    "accredited": "Accredited by the Moroccan State",
+    "double_degree": "Double degree FR–MA",
+    "fede_member": "FEDE Member",
+    "phone": "+212 535 40 04 17",
+    "email": "contact@eemci.ma",
+    "toggle_theme": "Toggle theme",
+    "open_menu": "Open menu",
+    "close": "Close"
+  }
+}
