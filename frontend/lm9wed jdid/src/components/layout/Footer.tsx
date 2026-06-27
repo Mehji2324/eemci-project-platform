@@ -35,7 +35,7 @@ export default function Footer() {
 
       <div className="container relative">
         {/* Main grid */}
-        <div className="py-16 grid gap-12 md:grid-cols-2 lg:grid-cols-5 border-b border-white/8">
+        <div className="py-16 lg:py-20 grid gap-12 md:grid-cols-2 lg:grid-cols-5 border-b border-white/8">
           {/* Brand col */}
           <div className="lg:col-span-2">
             <Logo variant="light" size="lg" />
@@ -63,7 +63,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="w-10 h-10 rounded-xl bg-white/8 border border-white/10 grid place-items-center hover:bg-white/15 hover:border-white/20 transition"
+                  className="w-10 h-10 rounded-xl bg-white/8 border border-white/10 grid place-items-center hover:bg-white/15 hover:border-white/20 hover:scale-105 transition-all duration-200"
                 >
                   <Icon className="w-4 h-4 text-primary-200" />
                 </a>
@@ -137,7 +137,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-primary-400/60">
+        <div className="py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-primary-400/60">
           <p>© {new Date().getFullYear()} EEMCI Meknès — Tous droits réservés.</p>
           <p>École Européenne de Management, Commerce & IT et d'Hôtellerie & Tourisme</p>
         </div>

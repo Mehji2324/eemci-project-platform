@@ -7,11 +7,13 @@ use App\Services\PaymentService;
 use App\Models\Payment;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use App\Services\NotificationService;
 
 class PaymentController extends Controller
 {
     public function __construct(
-        protected PaymentService $paymentService
+        protected PaymentService $paymentService,
+        protected NotificationService $notificationService
     ) {}
 
     public function index(Request $request): JsonResponse
@@ -60,6 +62,15 @@ class PaymentController extends Controller
             $request->only(['status', 'transaction_id', 'notes']), 
             $request->user()
         );
+
+        if ($request->status === 'paid' && $payment->status !== 'paid') {
+            $this->notificationService->paymentValidated(
+                $updatedPayment->student->user_id,
+                $updatedPayment->reference,
+                $updatedPayment->amount,
+                $updatedPayment->currency
+            );
+        }
 
         return response()->json([
             'message' => "Payment marked as {$request->status}.",

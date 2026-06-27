@@ -7,9 +7,14 @@ use App\Models\Note;
 use App\Models\Module;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use App\Services\NotificationService;
 
 class NoteController extends Controller
 {
+    public function __construct(
+        protected NotificationService $notificationService
+    ) {}
+
     /**
      * List notes.
      * Admin: all. Teacher: own modules. Student: own notes.
@@ -58,6 +63,14 @@ class NoteController extends Controller
                 'submitted_by' => $user->id,
             ]
         );
+        
+        $note->load(['student.user']);
+        $this->notificationService->gradeAdded(
+            $note->student->user_id,
+            $module->name,
+            $note->cc_note,
+            $note->exam_note
+        );
 
         return response()->json([
             'message' => 'Note submitted successfully. Pending admin validation.',
@@ -80,6 +93,13 @@ class NoteController extends Controller
             'validated_by' => $request->user()->id,
             'validated_at' => now(),
         ]);
+        
+        $note->load(['student.user', 'module']);
+        $this->notificationService->gradeValidated(
+            $note->student->user_id,
+            $note->module->name,
+            $note->average
+        );
 
         return response()->json([
             'message' => 'Note validated successfully.',

@@ -13,6 +13,7 @@ use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\AbsenceController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\NotificationController;
 
 Route::get('/health', [\App\Http\Controllers\HealthController::class, 'check']);
 
@@ -40,6 +41,13 @@ Route::prefix('v1')->group(function () {
         Route::get('/auth/me', [AuthController::class, 'me']);
         Route::post('/auth/change-password', [AuthController::class, 'changePassword'])
              ->middleware('throttle:5,1');
+
+        // Notifications
+        Route::get('/notifications', [NotificationController::class, 'index']);
+        Route::get('/notifications/unread', [NotificationController::class, 'unread']);
+        Route::patch('/notifications/read-all', [NotificationController::class, 'markAllAsRead']);
+        Route::patch('/notifications/{notification}/read', [NotificationController::class, 'markAsRead']);
+        Route::delete('/notifications/{notification}', [NotificationController::class, 'destroy']);
 
         /*
         |--------------------------------------------------------------------------

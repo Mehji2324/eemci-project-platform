@@ -7,11 +7,13 @@ use App\Models\Student;
 use App\Services\StudentService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use App\Services\NotificationService;
 
 class StudentValidationController extends Controller
 {
     public function __construct(
-        protected StudentService $studentService
+        protected StudentService $studentService,
+        protected NotificationService $notificationService
     ) {}
 
     public function pending(Request $request): JsonResponse
@@ -23,6 +25,12 @@ class StudentValidationController extends Controller
     {
         try {
             $result = $this->studentService->validateStudent($student->id, $request->user());
+
+            $this->notificationService->studentValidated(
+                $result['student']->user_id,
+                $result['student']->user->full_name,
+                $result['student']->matricule
+            );
 
             return response()->json([
                 'message' => 'Student validated successfully. Credentials generated.',

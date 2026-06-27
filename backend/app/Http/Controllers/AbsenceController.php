@@ -7,9 +7,14 @@ use App\Models\Absence;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Services\NotificationService;
 
 class AbsenceController extends Controller
 {
+    public function __construct(
+        protected NotificationService $notificationService
+    ) {}
+
     public function index(Request $request): JsonResponse
     {
         $user = $request->user();
@@ -66,6 +71,14 @@ class AbsenceController extends Controller
             'validated_by'  => $request->user()->id,
             'validated_at'  => now(),
         ]);
+        
+        $absence->load(['student', 'module']);
+        $this->notificationService->absenceValidated(
+            $absence->student->user_id,
+            $request->status,
+            $absence->date->format('Y-m-d'),
+            $absence->module->name
+        );
 
         return response()->json([
             'message' => "Absence {$request->status} successfully.",

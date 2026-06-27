@@ -63,7 +63,7 @@ export default function Navbar() {
         className={cn(
           'sticky top-0 z-50 transition-all duration-300',
           scrolled
-            ? 'bg-white/90 dark:bg-primary-950/90 backdrop-blur-xl border-b border-surface-border/70 dark:border-white/8 shadow-soft'
+            ? 'glass border-b border-surface-border/60 shadow-soft'
             : 'bg-transparent'
         )}
       >
@@ -125,7 +125,7 @@ export default function Navbar() {
                 {/* Dropdown */}
                 {link.dropdown && activeDropdown === link.to && (
                   <div className={cn(
-                    "absolute top-full mt-2 w-64 glass rounded-2xl shadow-lg border border-white/50 dark:border-white/10 dark:bg-primary-900/90 py-2 animate-fade-up",
+                    "absolute top-full mt-3 w-72 rounded-2xl border border-surface-border bg-surface shadow-xl py-2 animate-fade-down",
                     i18n.language === 'ar' ? "right-0" : "left-0"
                   )}>
                     {link.dropdown.map((item) => {
@@ -135,10 +135,10 @@ export default function Navbar() {
                           key={item.to}
                           to={item.to}
                           onClick={closeMenus}
-                          className="flex items-start gap-3 px-4 py-3 hover:bg-primary-50/80 dark:hover:bg-white/5 transition rounded-xl mx-1"
+                          className="flex items-start gap-3 px-4 py-3 hover:bg-surface-subtle transition-colors duration-150 rounded-xl mx-1"
                         >
-                          <span className="w-8 h-8 rounded-lg bg-primary-100 dark:bg-primary-800 grid place-items-center shrink-0 mt-0.5">
-                            <Icon className="w-4 h-4 text-primary-600 dark:text-primary-300" />
+                          <span className="w-8 h-8 rounded-xl bg-primary-50 grid place-items-center shrink-0 mt-0.5">
+                            <Icon className="w-4 h-4 text-primary-600" />
                           </span>
                           <span>
                             <span className="block text-sm font-semibold text-ink dark:text-white">{item.label}</span>
@@ -173,7 +173,7 @@ export default function Navbar() {
                 <ChevronDown className="w-3 h-3" />
               </button>
               <div className={cn(
-                "absolute top-full mt-2 w-36 glass dark:bg-primary-900/95 rounded-xl shadow-md border border-white/50 dark:border-white/10 py-1.5 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity z-50",
+                "absolute top-full mt-3 w-40 rounded-xl bg-surface shadow-xl border border-surface-border py-1.5 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 z-50",
                 i18n.language === 'ar' ? "left-0" : "right-0"
               )}>
                 {(['fr', 'en', 'ar'] as const).map((l) => (
@@ -226,7 +226,7 @@ export default function Navbar() {
 
           {/* Panel */}
           <aside className={cn(
-            "absolute top-0 bottom-0 w-[85vw] max-w-sm bg-white dark:bg-primary-950 shadow-2xl flex flex-col animate-fade-up",
+            "absolute top-0 bottom-0 w-[85vw] max-w-sm bg-surface shadow-2xl flex flex-col animate-fade-up",
             i18n.language === 'ar' ? "left-0" : "right-0"
           )}>
             <div className="flex items-center justify-between p-5 border-b border-surface-border dark:border-white/8">
