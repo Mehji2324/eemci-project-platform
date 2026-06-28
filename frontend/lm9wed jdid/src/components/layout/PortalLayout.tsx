@@ -1,5 +1,5 @@
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, BookOpen, Award, Calendar, CreditCard, LogOut, UserCircle, FileText } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Award, Calendar, CreditCard, LogOut, Menu, X, FileText, BarChart3 } from 'lucide-react';
 import { Logo } from '../ui/Logo';
 import { auth } from '@/lib/auth';
 import { cn } from '@/lib/cn';
@@ -11,6 +11,7 @@ const NAV = [
   { to:'/portal/grades', label:'Notes', icon:Award },
   { to:'/portal/payments', label:'Paiements', icon:CreditCard },
   { to:'/portal/documents', label:'Documents', icon:FileText },
+  { to:'/portal/reports', label:'Suivi', icon:BarChart3 },
 ];
 
 export default function PortalLayout() {

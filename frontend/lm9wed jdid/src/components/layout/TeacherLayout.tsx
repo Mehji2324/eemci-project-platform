@@ -1,5 +1,5 @@
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
-import { Award, BookOpen, CalendarCheck, ClipboardList, LayoutDashboard, LogOut, UserCircle, FileText } from 'lucide-react';
+import { Award, BookOpen, CalendarCheck, ClipboardList, LayoutDashboard, LogOut, UserCircle, FileText, BarChart3 } from 'lucide-react';
 import { Logo } from '../ui/Logo';
 import { auth } from '@/lib/auth';
 import { cn } from '@/lib/cn';
@@ -10,6 +10,7 @@ const NAV = [
   { to:'/teacher/attendance', label:'Présences', icon:CalendarCheck },
   { to:'/teacher/grades', label:'Notes', icon:Award },
   { to:'/teacher/documents', label:'Documents', icon:FileText },
+  { to:'/teacher/reports', label:'Analytiques', icon:BarChart3 },
 ];
 
 export default function TeacherLayout() {

@@ -123,6 +123,15 @@ Route::prefix('v1')->group(function () {
         Route::get('/documents', [DocumentController::class, 'index']);
         Route::get('/documents/{document}', [DocumentController::class, 'show']);
         Route::get('/documents/{document}/download', [DocumentController::class, 'download']);
+        
+        // Reports Module
+        Route::prefix('reports')->group(function () {
+            Route::get('dashboard', [App\Http\Controllers\ReportController::class, 'dashboard']);
+            Route::get('students', [App\Http\Controllers\ReportController::class, 'students']);
+            Route::get('payments', [App\Http\Controllers\ReportController::class, 'payments']);
+            Route::get('attendance', [App\Http\Controllers\ReportController::class, 'attendance']);
+        });
+
         Route::put('/auth/profile', [StudentController::class, 'updateOwnProfile']);
 
     });

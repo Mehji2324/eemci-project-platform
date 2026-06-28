@@ -40,6 +40,7 @@ const PortalGrades    = lazy(() => import('./pages/portal/Grades'));
 const PortalSchedule  = lazy(() => import('./pages/portal/Schedule'));
 const PortalPayments  = lazy(() => import('./pages/portal/Payments'));
 const PortalDocuments = lazy(() => import('./pages/portal/Documents'));
+const PortalReports   = lazy(() => import('./pages/portal/Reports'));
 
 // Teacher
 const TeacherDashboard = lazy(() => import('./pages/teacher/Dashboard'));
@@ -47,6 +48,7 @@ const TeacherCourses   = lazy(() => import('./pages/teacher/Courses'));
 const TeacherAttendance= lazy(() => import('./pages/teacher/Attendance'));
 const TeacherGrades    = lazy(() => import('./pages/teacher/Grades'));
 const TeacherDocuments = lazy(() => import('./pages/teacher/Documents'));
+const TeacherReports   = lazy(() => import('./pages/teacher/Reports'));
 
 export default function App() {
   const { theme, lang } = useUiStore();
@@ -97,6 +99,7 @@ export default function App() {
           <Route path="/portal/schedule" element={<PortalSchedule />} />
           <Route path="/portal/payments" element={<PortalPayments />} />
           <Route path="/portal/documents" element={<PortalDocuments />} />
+          <Route path="/portal/reports" element={<PortalReports />} />
         </Route>
 
         <Route element={<ProtectedRoute role="teacher"><TeacherLayout /></ProtectedRoute>}>
@@ -105,6 +108,7 @@ export default function App() {
           <Route path="/teacher/attendance" element={<TeacherAttendance />} />
           <Route path="/teacher/grades" element={<TeacherGrades />} />
           <Route path="/teacher/documents" element={<TeacherDocuments />} />
+          <Route path="/teacher/reports" element={<TeacherReports />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />
