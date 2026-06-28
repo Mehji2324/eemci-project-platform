@@ -11,6 +11,8 @@ use App\Repositories\Contracts\AbsenceRepositoryInterface;
 use App\Repositories\Eloquent\EloquentAbsenceRepository;
 use App\Repositories\Contracts\NoteRepositoryInterface;
 use App\Repositories\Eloquent\EloquentNoteRepository;
+use App\Repositories\Contracts\DocumentRepositoryInterface;
+use App\Repositories\Eloquent\EloquentDocumentRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(PaymentRepositoryInterface::class, EloquentPaymentRepository::class);
         $this->app->bind(AbsenceRepositoryInterface::class, EloquentAbsenceRepository::class);
         $this->app->bind(NoteRepositoryInterface::class, EloquentNoteRepository::class);
+        $this->app->bind(DocumentRepositoryInterface::class, EloquentDocumentRepository::class);
     }
 
     /**

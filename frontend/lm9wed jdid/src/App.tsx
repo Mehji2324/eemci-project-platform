@@ -31,6 +31,7 @@ const AdminGrades    = lazy(() => import('./pages/admin/Grades'));
 const AdminPayments  = lazy(() => import('./pages/admin/Payments'));
 const AdminReports   = lazy(() => import('./pages/admin/Reports'));
 const AdminSettings  = lazy(() => import('./pages/admin/Settings'));
+const AdminDocuments = lazy(() => import('./pages/admin/Documents'));
 
 // Portal (student)
 const PortalDashboard = lazy(() => import('./pages/portal/Dashboard'));
@@ -38,12 +39,14 @@ const PortalCourses   = lazy(() => import('./pages/portal/Courses'));
 const PortalGrades    = lazy(() => import('./pages/portal/Grades'));
 const PortalSchedule  = lazy(() => import('./pages/portal/Schedule'));
 const PortalPayments  = lazy(() => import('./pages/portal/Payments'));
+const PortalDocuments = lazy(() => import('./pages/portal/Documents'));
 
 // Teacher
 const TeacherDashboard = lazy(() => import('./pages/teacher/Dashboard'));
 const TeacherCourses   = lazy(() => import('./pages/teacher/Courses'));
 const TeacherAttendance= lazy(() => import('./pages/teacher/Attendance'));
 const TeacherGrades    = lazy(() => import('./pages/teacher/Grades'));
+const TeacherDocuments = lazy(() => import('./pages/teacher/Documents'));
 
 export default function App() {
   const { theme, lang } = useUiStore();
@@ -84,6 +87,7 @@ export default function App() {
           <Route path="/admin/payments" element={<AdminPayments />} />
           <Route path="/admin/reports" element={<AdminReports />} />
           <Route path="/admin/settings" element={<AdminSettings />} />
+          <Route path="/admin/documents" element={<AdminDocuments />} />
         </Route>
 
         <Route element={<ProtectedRoute role="student"><PortalLayout /></ProtectedRoute>}>
@@ -92,6 +96,7 @@ export default function App() {
           <Route path="/portal/grades" element={<PortalGrades />} />
           <Route path="/portal/schedule" element={<PortalSchedule />} />
           <Route path="/portal/payments" element={<PortalPayments />} />
+          <Route path="/portal/documents" element={<PortalDocuments />} />
         </Route>
 
         <Route element={<ProtectedRoute role="teacher"><TeacherLayout /></ProtectedRoute>}>
@@ -99,6 +104,7 @@ export default function App() {
           <Route path="/teacher/courses" element={<TeacherCourses />} />
           <Route path="/teacher/attendance" element={<TeacherAttendance />} />
           <Route path="/teacher/grades" element={<TeacherGrades />} />
+          <Route path="/teacher/documents" element={<TeacherDocuments />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />

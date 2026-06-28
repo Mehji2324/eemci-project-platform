@@ -2,7 +2,7 @@ import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import {
   LayoutDashboard, Users, GraduationCap, BookOpen, CalendarCheck,
-  Award, CreditCard, BarChart3, Settings, LogOut, Menu, X, Bell, Search, PanelLeftClose, ChevronLeft
+  Award, CreditCard, BarChart3, Settings, LogOut, Menu, X, Bell, Search, PanelLeftClose, ChevronLeft, FileText
 } from 'lucide-react';
 import { Logo } from '../ui/Logo';
 import { auth } from '@/lib/auth';
@@ -16,6 +16,7 @@ const NAV = [
   { to:'/admin/attendance', label:'Présences', icon:CalendarCheck },
   { to:'/admin/grades', label:'Notes', icon:Award },
   { to:'/admin/payments', label:'Paiements', icon:CreditCard },
+  { to:'/admin/documents', label:'Documents', icon:FileText },
   { to:'/admin/reports', label:'Rapports', icon:BarChart3 },
   { to:'/admin/settings', label:'Paramètres', icon:Settings }
 ];

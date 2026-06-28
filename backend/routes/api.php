@@ -14,6 +14,7 @@ use App\Http\Controllers\NoteController;
 use App\Http\Controllers\AbsenceController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\DocumentController;
 
 Route::get('/health', [\App\Http\Controllers\HealthController::class, 'check']);
 
@@ -69,6 +70,7 @@ Route::prefix('v1')->group(function () {
             Route::apiResource('filieres', FiliereController::class)->except(['index', 'show']);
             Route::apiResource('classes', ClasseController::class)->except(['index', 'show']);
             Route::apiResource('modules', ModuleController::class)->except(['index', 'show']);
+            Route::apiResource('documents', DocumentController::class)->only(['store', 'update', 'destroy']);
 
             // Validations
             Route::put('/notes/{note}/validate', [NoteController::class, 'validateNote']);
@@ -87,6 +89,9 @@ Route::prefix('v1')->group(function () {
         Route::middleware('role:admin,teacher')->group(function () {
             Route::post('/notes', [NoteController::class, 'store']);
             Route::post('/absences', [AbsenceController::class, 'store']);
+            Route::post('/documents', [DocumentController::class, 'store']);
+            Route::put('/documents/{document}', [DocumentController::class, 'update']);
+            Route::delete('/documents/{document}', [DocumentController::class, 'destroy']);
         });
 
         /*
@@ -108,13 +113,16 @@ Route::prefix('v1')->group(function () {
         Route::put('/students/{student}', [StudentController::class, 'update'])->middleware('role:admin');
         Route::get('/teachers/{teacher}', [TeacherController::class, 'show']);
 
-        // Notes, Absences & Payments View
+        // Notes, Absences, Payments & Documents View
         Route::get('/notes', [NoteController::class, 'index']);
         Route::get('/absences', [AbsenceController::class, 'index']);
         Route::get('/absences/{absence}/download', [AbsenceController::class, 'downloadJustification']);
         Route::get('/payments', [PaymentController::class, 'index']);
         Route::post('/payments', [PaymentController::class, 'store'])->middleware('role:admin');
         Route::get('/payments/{payment}', [PaymentController::class, 'show']);
+        Route::get('/documents', [DocumentController::class, 'index']);
+        Route::get('/documents/{document}', [DocumentController::class, 'show']);
+        Route::get('/documents/{document}/download', [DocumentController::class, 'download']);
         Route::put('/auth/profile', [StudentController::class, 'updateOwnProfile']);
 
     });
