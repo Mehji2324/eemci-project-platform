@@ -36,7 +36,7 @@ class StudentService
             }
 
             $matricule = $this->matriculeService->generate($student);
-            $academicEmail = $this->emailService->generate($student);
+            $academicEmail = $this->emailService->generate($student->user->first_name, $student->user->last_name);
             $tempPassword = Str::random(10);
 
             $student->user->update([

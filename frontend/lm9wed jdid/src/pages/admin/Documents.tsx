@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Plus, Search, File, MoreHorizontal, Download, X } from 'lucide-react';
 import { Card, CardBody } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
@@ -14,12 +15,16 @@ export default function AdminDocuments() {
   const [openMenu, setOpenMenu] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const [list, setList] = useState<AppDocument[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   // Form State
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [type, setType] = useState(DOCUMENT_TYPES[0]);
   const [file, setFile] = useState<File | null>(null);
+  const [classeId, setClasseId] = useState('');
+  const [moduleId, setModuleId] = useState('');
+  const [isPublic, setIsPublic] = useState(false);
   const [classes, setClasses] = useState<any[]>([]);
   const [modules, setModules] = useState<any[]>([]);
 
@@ -172,7 +177,7 @@ export default function AdminDocuments() {
                   {!r.classe && !r.module && (r.is_public ? <Badge tone="emerald">Public</Badge> : <span className="text-ink-soft">—</span>)}
                 </div>
               )},
-              { key: 'size', header: 'Taille', cell: (r) => <span className="text-ink-soft font-mono text-xs">{(r.size / 1024 / 1024).toFixed(2)} MB</span> },
+              { key: 'size', header: 'Taille', cell: (r) => <span className="text-ink-soft font-mono text-xs">{(r.size ? (r.size / 1024 / 1024).toFixed(2) : '0.00') + ' MB'}</span> },
               { key: 'downloads', header: 'Téléchargements', cell: (r) => <span className="text-ink-soft">{r.download_count}</span> },
               { key: 'actions', header: <span className="sr-only">Actions</span>, headerClassName: 'w-10', cell: (s: AppDocument) => (
                 <div className="relative">

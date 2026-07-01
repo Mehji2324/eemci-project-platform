@@ -8,6 +8,7 @@ use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\Role;
 use App\Models\Student;
 use App\Models\User;
+use App\Services\AcademicEmailService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,17 +23,26 @@ class AuthController extends Controller
     {
         $studentRole = Role::where('name', 'student')->firstOrFail();
 
+        // 1. Generate Academic Email BEFORE creating the user
+        $emailService = app(AcademicEmailService::class);
+        $academicEmail = $emailService->generate($request->first_name, $request->last_name);
+
+        // 2. Generate temporary password: Firstname@eemci.ma
+        $plainPassword = $request->first_name . '@eemci.ma';
+
         $user = User::create([
-            'role_id'    => $studentRole->id,
-            'first_name' => $request->first_name,
-            'last_name'  => $request->last_name,
-            'email'      => $request->email,
-            'phone'      => $request->phone,
-            'password'   => Hash::make($request->password),
+            'role_id'        => $studentRole->id,
+            'first_name'     => $request->first_name,
+            'last_name'      => $request->last_name,
+            'email'          => $academicEmail,     // Academic email is primary login
+            'personal_email' => $request->email,     // Admin provided email
+            'phone'          => $request->phone,
+            'password'       => Hash::make($plainPassword),
+            'must_change_password' => true,
         ]);
 
         // Create the student profile with pending status
-        Student::create([
+        $student = Student::create([
             'user_id'        => $user->id,
             'date_of_birth'  => $request->date_of_birth,
             'place_of_birth' => $request->place_of_birth,
@@ -44,12 +54,20 @@ class AuthController extends Controller
             'status'         => 'pending',
         ]);
 
+        // We store the academic email in the student table too for reference
+        $student->update(['academic_email' => $academicEmail]);
+
         return response()->json([
             'message' => 'Registration successful. Your account is pending admin validation.',
+            'credentials' => [
+                'academic_email'    => $academicEmail,
+                'temporary_password' => $plainPassword,
+                'matricule'         => 'Pending validation',
+            ],
             'user'    => [
                 'id'         => $user->id,
                 'full_name'  => $user->full_name,
-                'email'      => $user->email,
+                'email'      => $academicEmail,
                 'status'     => 'pending',
             ],
         ], 201);

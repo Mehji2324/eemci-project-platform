@@ -24,6 +24,7 @@ export const AdmissionFunnel: React.FC = () => {
   const [currentStep, setCurrentStep] = React.useState(0);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [isSuccess, setIsSuccess] = React.useState(false);
+  const [uploadedDocs, setUploadedDocs] = React.useState<Record<string, File>>({});
 
   const {
     register,
@@ -236,23 +237,43 @@ export const AdmissionFunnel: React.FC = () => {
                       { id: 'identityCard', label: 'Carte d\'Identité / Passeport' },
                       { id: 'diploma', label: 'Dernier Diplôme' },
                       { id: 'transcripts', label: 'Relevés de notes' },
-                    ].map(doc => (
-                      <label key={doc.id} className="p-6 border-2 border-dashed border-neutral-200 rounded-2xl flex flex-col items-center text-center group hover:border-primary-500 hover:bg-primary-50/30 transition-all cursor-pointer">
-                        <input 
-                          type="file" 
-                          className="hidden" 
-                          onChange={(e) => {
-                            const file = e.target.files?.[0];
-                            if (file) alert(`Document "${file.name}" sélectionné. Il sera soumis avec votre dossier.`);
-                          }} 
-                        />
-                        <div className="w-12 h-12 bg-neutral-100 rounded-full flex items-center justify-center text-neutral-400 group-hover:bg-primary-500 group-hover:text-white transition-all mb-4">
-                          <Upload size={24} />
-                        </div>
-                        <h4 className="font-bold text-primary-900 text-sm mb-1">{doc.label}</h4>
-                        <p className="text-xs text-neutral-400">Glisser-déposer ou cliquer pour choisir</p>
-                      </label>
-                    ))}
+                    ].map(doc => {
+                      const file = uploadedDocs[doc.id];
+                      return (
+                        <label
+                          key={doc.id}
+                          className={`p-6 border-2 rounded-2xl flex flex-col items-center text-center group transition-all cursor-pointer ${
+                            file
+                              ? 'border-green-500 bg-green-50'
+                              : 'border-dashed border-neutral-200 hover:border-primary-500 hover:bg-primary-50/30'
+                          }`}
+                        >
+                          <input
+                            type="file"
+                            className="hidden"
+                            onChange={(e) => {
+                              const selectedFile = e.target.files?.[0];
+                              if (selectedFile) {
+                                setUploadedDocs(prev => ({ ...prev, [doc.id]: selectedFile }));
+                              }
+                            }}
+                          />
+                          <div
+                            className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 transition-all ${
+                              file
+                                ? 'bg-green-500 text-white'
+                                : 'bg-neutral-100 text-neutral-400 group-hover:bg-primary-500 group-hover:text-white'
+                            }`}
+                          >
+                            {file ? <CheckCircle size={24} /> : <Upload size={24} />}
+                          </div>
+                          <h4 className="font-bold text-primary-900 text-sm mb-1">{doc.label}</h4>
+                          <p className={`text-xs truncate max-w-full ${file ? 'text-green-600 font-medium' : 'text-neutral-400'}`}>
+                            {file ? file.name : 'Glisser-déposer ou cliquer pour choisir'}
+                          </p>
+                        </label>
+                      );
+                    })}
                   </div>
                 </div>
               )}

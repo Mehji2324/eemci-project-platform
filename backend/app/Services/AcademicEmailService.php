@@ -2,26 +2,24 @@
 
 namespace App\Services;
 
-use App\Models\Student;
 use App\Models\User;
 
 class AcademicEmailService
 {
-    protected string $domain = 'eemci.edu';
+    protected string $domain = 'eemci.ma';
 
     /**
-     * Generate a unique academic email for a validated student.
+     * Generate a unique academic email.
      *
-     * Format: {firstname}.{lastname}@eemci.edu
-     * If taken: {firstname}.{lastname}2@eemci.edu, etc.
+     * Format: {firstname}.{lastname}@eemci.ma
+     * If taken: {firstname}.{lastname}2@eemci.ma, etc.
      */
-    public function generate(Student $student): string
+    public function generate(string $firstName, string $lastName): string
     {
-        $user      = $student->user;
-        $firstName = $this->normalize($user->first_name);
-        $lastName  = $this->normalize($user->last_name);
+        $fName = $this->normalize($firstName);
+        $lName = $this->normalize($lastName);
 
-        $baseEmail = "{$firstName}.{$lastName}@{$this->domain}";
+        $baseEmail = "{$fName}.{$lName}@{$this->domain}";
 
         if (! $this->emailExists($baseEmail)) {
             return $baseEmail;
@@ -29,24 +27,11 @@ class AcademicEmailService
 
         $counter = 2;
         do {
-            $email = "{$firstName}.{$lastName}{$counter}@{$this->domain}";
+            $email = "{$fName}.{$lName}{$counter}@{$this->domain}";
             $counter++;
         } while ($this->emailExists($email));
 
         return $email;
-    }
-
-    /**
-     * Generate a temporary random password.
-     */
-    public function generateTemporaryPassword(): string
-    {
-        $chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789@#!';
-        $password = '';
-        for ($i = 0; $i < 10; $i++) {
-            $password .= $chars[random_int(0, strlen($chars) - 1)];
-        }
-        return $password;
     }
 
     private function normalize(string $name): string
@@ -60,7 +45,6 @@ class AcademicEmailService
 
     private function emailExists(string $email): bool
     {
-        return User::where('email', $email)->exists()
-            || Student::where('academic_email', $email)->exists();
+        return User::where('email', $email)->exists();
     }
 }

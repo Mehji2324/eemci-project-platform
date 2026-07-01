@@ -15,7 +15,6 @@ class RegisterRequest extends FormRequest
             'last_name'  => ['required', 'string', 'max:100'],
             'email'      => ['required', 'email', 'unique:users,email'],
             'phone'      => ['nullable', 'string', 'max:20'],
-            'password'   => ['required', 'string', 'min:8', 'confirmed'],
 
             // Optional student profile fields
             'date_of_birth'  => ['nullable', 'date'],

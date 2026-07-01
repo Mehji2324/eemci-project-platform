@@ -5,11 +5,14 @@ import { PageHeader } from '@/components/ui/PageHeader';
 import { Award, CalendarCheck, Wallet, Clock } from 'lucide-react';
 
 export default function PortalDashboard() {
+  const user = JSON.parse(localStorage.getItem('eemci_user') || 'null');
+  const displayName = user?.name || user?.full_name || 'Étudiant';
+
   return (
     <div className="space-y-6">
       <PageHeader
         eyebrow="Semestre 3 · 2025-26"
-        title="Bonjour Salma"
+        title={`Bonjour ${displayName}`}
         description="Prochain cours : Marketing Digital · 10h00 · Salle B12"
       />
 

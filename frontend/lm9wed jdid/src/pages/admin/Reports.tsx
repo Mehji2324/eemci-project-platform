@@ -55,10 +55,10 @@ export default function AdminReports() {
       <PageHeader title="Rapports et Analytiques" description="Tableau de bord consolidé des performances et exports." />
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        <KpiCard title="Total Étudiants" value={stats.total_students} icon={Users} trend={{ value: 5, label: 'ce mois', isPositive: true }} />
-        <KpiCard title="Revenus Validés" value={`${stats.total_payments.toLocaleString()} MAD`} icon={CreditCard} />
-        <KpiCard title="Taux de Présence" value={`${stats.attendance_rate}%`} icon={GraduationCap} />
-        <KpiCard title="Documents (DLs)" value={stats.document_downloads} icon={FileText} />
+        <KpiCard title="Total Étudiants" value={stats.total_students} icon={<Users />} trend={{ value: 5, label: 'ce mois', isPositive: true }} />
+        <KpiCard title="Revenus Validés" value={`${stats.total_payments.toLocaleString()} MAD`} icon={<CreditCard />} />
+        <KpiCard title="Taux de Présence" value={`${stats.attendance_rate}%`} icon={<GraduationCap />} />
+        <KpiCard title="Documents (DLs)" value={stats.document_downloads} icon={<FileText />} />
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">

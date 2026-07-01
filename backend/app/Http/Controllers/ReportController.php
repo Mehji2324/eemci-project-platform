@@ -17,14 +17,14 @@ class ReportController extends Controller
 
     public function dashboard(Request $request)
     {
-        $this->authorize('viewAnyReport', App\Models\User::class);
+        $this->authorize('viewAnyReport');
         $data = $this->reportService->getDashboardSummary($request->user());
         return response()->json(['data' => $data]);
     }
 
     public function students(Request $request)
     {
-        $this->authorize('viewAnyReport', App\Models\User::class);
+        $this->authorize('viewAnyReport');
         
         if ($request->has('export')) {
             return $this->exportReport('students', $request);
@@ -36,7 +36,7 @@ class ReportController extends Controller
 
     public function payments(Request $request)
     {
-        $this->authorize('viewAnyReport', App\Models\User::class);
+        $this->authorize('viewAnyReport');
 
         if ($request->has('export')) {
             return $this->exportReport('payments', $request);
@@ -48,7 +48,7 @@ class ReportController extends Controller
 
     public function attendance(Request $request)
     {
-        $this->authorize('viewAnyReport', App\Models\User::class);
+        $this->authorize('viewAnyReport');
 
         if ($request->has('export')) {
             return $this->exportReport('attendance', $request);
