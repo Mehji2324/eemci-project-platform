@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Plus, Search, File, MoreHorizontal, Download, X } from 'lucide-react';
 import { Card, CardBody } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
@@ -14,6 +15,12 @@ export default function TeacherDocuments() {
   const [openMenu, setOpenMenu] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const [list, setList] = useState<AppDocument[]>([]);
+  
+  // Modal and File State
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [file, setFile] = useState<File | null>(null);
+  const [classeId, setClasseId] = useState('');
+  const [moduleId, setModuleId] = useState('');
   
   // Form State
   const [title, setTitle] = useState('');

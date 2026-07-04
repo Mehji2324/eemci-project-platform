@@ -1,9 +1,10 @@
 import { cn } from '@/lib/cn';
 import { TrendingUp, TrendingDown } from 'lucide-react';
-import { ReactNode } from 'react';
+import type { LucideIcon } from 'lucide-react';
+import { ReactNode, isValidElement } from 'react';
 
-export const KpiCard = ({ label, value, trend, icon, tone='primary' }:{
-  label:string; value:string|number; trend?:number; icon?:ReactNode;
+export const KpiCard = ({ label, value, trend, icon: Icon, tone='primary' }:{
+  label:string; value:string|number; trend?:number; icon?:LucideIcon|ReactNode;
   tone?:'primary'|'accent'|'emerald'|'red';
 }) => {
   const tones = {
@@ -16,12 +17,12 @@ export const KpiCard = ({ label, value, trend, icon, tone='primary' }:{
     <div className="card group p-5 sm:p-6 hover:shadow-md hover:border-primary-200">
       <div className="flex items-start justify-between">
         <p className="text-sm font-medium text-ink-soft">{label}</p>
-        {icon && (
+        {Icon && (
           <div className={cn(
             'grid h-10 w-10 place-items-center rounded-xl transition-transform duration-300 group-hover:scale-110',
             tones[tone]
           )}>
-            {icon}
+            {isValidElement(Icon) ? Icon : <Icon className="h-5 w-5" />}
           </div>
         )}
       </div>
