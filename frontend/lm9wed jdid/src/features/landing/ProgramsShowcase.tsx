@@ -9,7 +9,7 @@ import { PROGRAMS } from '@/lib/data';
 import { cn } from '@/lib/cn';
 import { useTranslation } from 'react-i18next';
 
-const LEVELS = ['Tous', 'Bac+2', 'Bac+3', 'Bac+5', 'Bac+8'] as const;
+const LEVELS = ['Tous', 'Bac', 'Bac+2', 'Bac+3', 'Bac+5', 'Bac+8'] as const;
 
 export default function ProgramsShowcase() {
   const { t, i18n } = useTranslation();
