@@ -153,7 +153,10 @@ class ReportController extends Controller
         $html .= '</tr></thead><tbody>';
         foreach ($rows as $row) {
             $html .= '<tr>';
-            foreach ($row as $cell) { $html .= "<td>{$cell}</td>"; }
+            foreach ($row as $cell) { 
+                $safeCell = htmlspecialchars((string) $cell, ENT_QUOTES, 'UTF-8');
+                $html .= "<td>{$safeCell}</td>"; 
+            }
             $html .= '</tr>';
         }
         $html .= '</tbody></table>';

@@ -16,7 +16,7 @@ class RegistrationTest extends TestCase
         $filiere = Filiere::factory()->create();
         $classe = Classe::factory()->create(['filiere_id' => $filiere->id]);
 
-        $response = $this->postJson('/api/auth/register', [
+        $response = $this->postJson('/api/v1/auth/register', [
             'first_name' => 'John',
             'last_name' => 'Doe',
             'email' => 'john.doe@example.com',
@@ -28,15 +28,14 @@ class RegistrationTest extends TestCase
 
         $response->assertStatus(201)
                  ->assertJsonStructure([
-                     'success',
                      'message',
-                     'data' => [
-                         'user' => ['id', 'first_name', 'last_name', 'email'],
-                         'student' => ['id', 'status']
-                     ]
+                     'credentials' => [
+                         'academic_email', 'temporary_password', 'matricule'
+                     ],
+                     'user' => ['id', 'full_name', 'email', 'status']
                  ]);
 
-        $this->assertDatabaseHas('users', ['email' => 'john.doe@example.com']);
+        $this->assertDatabaseHas('users', ['personal_email' => 'john.doe@example.com']);
         $this->assertDatabaseHas('students', ['status' => 'pending']);
     }
 }

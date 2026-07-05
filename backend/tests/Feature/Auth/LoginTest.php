@@ -13,13 +13,13 @@ class LoginTest extends TestCase
     {
         $admin = $this->createAdmin(['email' => 'admin@test.com', 'password' => bcrypt('password')]);
 
-        $response = $this->postJson('/api/auth/login', [
+        $response = $this->postJson('/api/v1/auth/login', [
             'email' => 'admin@test.com',
             'password' => 'password',
         ]);
 
         $response->assertStatus(200)
-                 ->assertJsonStructure(['data' => ['token', 'user']]);
+                 ->assertJsonStructure(['token', 'user']);
     }
 
     public function test_pending_student_cannot_login()
@@ -27,13 +27,13 @@ class LoginTest extends TestCase
         $student = $this->createStudent(['status' => 'pending']);
         $student->user->update(['password' => bcrypt('password')]);
 
-        $response = $this->postJson('/api/auth/login', [
+        $response = $this->postJson('/api/v1/auth/login', [
             'email' => $student->user->email,
             'password' => 'password',
         ]);
 
         $response->assertStatus(403)
-                 ->assertJsonFragment(['message' => 'Your account is pending validation or has been rejected.']);
+                 ->assertJsonFragment(['message' => 'Your account is still pending admin validation.']);
     }
 
     public function test_validated_student_can_login()
@@ -41,7 +41,7 @@ class LoginTest extends TestCase
         $student = $this->createStudent(['status' => 'validated']);
         $student->user->update(['password' => bcrypt('password')]);
 
-        $response = $this->postJson('/api/auth/login', [
+        $response = $this->postJson('/api/v1/auth/login', [
             'email' => $student->user->email,
             'password' => 'password',
         ]);

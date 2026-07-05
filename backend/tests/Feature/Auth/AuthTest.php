@@ -13,19 +13,19 @@ class AuthTest extends TestCase
     {
         $user = $this->createAdmin();
 
-        $response = $this->actingAs($user)->getJson('/api/auth/me');
+        $response = $this->actingAs($user)->getJson('/api/v1/auth/me');
 
         $response->assertStatus(200)
-                 ->assertJsonPath('data.email', $user->email);
+                 ->assertJsonPath('user.email', $user->email);
     }
 
     public function test_user_can_logout()
     {
         $user = $this->createAdmin();
 
-        $response = $this->actingAs($user)->postJson('/api/auth/logout');
+        $response = $this->actingAs($user)->postJson('/api/v1/auth/logout');
 
         $response->assertStatus(200)
-                 ->assertJsonFragment(['message' => 'Logged out successfully']);
+                 ->assertJsonFragment(['message' => 'Logged out successfully.']);
     }
 }
