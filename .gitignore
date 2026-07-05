@@ -1,4 +1,5 @@
-backend/.env
+backend/.env*
+!backend/.env.example
 backend/database/database.sqlite
 backend/vendor/
 frontend/lm9wed jdid/node_modules/

@@ -13,7 +13,7 @@ class PaymentControllerTest extends TestCase
     {
         $student = $this->createStudent();
 
-        $response = $this->actingAsAdmin()->postJson('/api/payments', [
+        $response = $this->actingAsAdmin()->postJson('/api/v1/payments', [
             'student_id' => $student->id,
             'type' => 'scolarite',
             'amount' => 50000,
@@ -26,7 +26,7 @@ class PaymentControllerTest extends TestCase
 
     public function test_student_cannot_record_payment()
     {
-        $response = $this->actingAsStudent()->postJson('/api/payments', [
+        $response = $this->actingAsStudent()->postJson('/api/v1/payments', [
             'student_id' => 1,
             'type' => 'scolarite',
             'amount' => 50000,

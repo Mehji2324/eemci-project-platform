@@ -13,6 +13,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -28,7 +29,7 @@ class AuthController extends Controller
         $academicEmail = $emailService->generate($request->first_name, $request->last_name);
 
         // 2. Generate temporary password: Firstname@eemci.ma
-        $plainPassword = $request->first_name . '@eemci.ma';
+        $plainPassword = Str::password(12);
 
         $user = User::create([
             'role_id'        => $studentRole->id,
@@ -123,7 +124,10 @@ class AuthController extends Controller
      */
     public function logout(Request $request): JsonResponse
     {
-        $request->user()->currentAccessToken()->delete();
+        $token = $request->user()->currentAccessToken();
+        if ($token && method_exists($token, 'delete')) {
+            $token->delete();
+        }
 
         return response()->json(['message' => 'Logged out successfully.']);
     }

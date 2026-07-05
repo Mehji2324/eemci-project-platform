@@ -16,7 +16,7 @@ class AbsenceControllerTest extends TestCase
         $student = $this->createStudent();
         $module = Module::factory()->create(['teacher_id' => $teacher->id]);
 
-        $response = $this->actingAs($teacher->user)->postJson('/api/absences', [
+        $response = $this->actingAs($teacher->user)->postJson('/api/v1/absences', [
             'student_id' => $student->id,
             'module_id' => $module->id,
             'date' => '2024-01-01',
@@ -24,6 +24,6 @@ class AbsenceControllerTest extends TestCase
         ]);
 
         $response->assertStatus(201);
-        $this->assertDatabaseHas('absences', ['student_id' => $student->id, 'date' => '2024-01-01']);
+        $this->assertDatabaseHas('absences', ['student_id' => $student->id, 'date' => '2024-01-01 00:00:00']);
     }
 }

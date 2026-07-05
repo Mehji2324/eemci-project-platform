@@ -67,11 +67,14 @@ class EloquentDocumentRepository implements DocumentRepositoryInterface
     public function delete(int $id)
     {
         $document = $this->find($id);
+        $filePath = $document->file_path;
         
-        if ($document->file_path && Storage::disk('local')->exists($document->file_path)) {
-            Storage::disk('local')->delete($document->file_path);
+        $deleted = $document->delete();
+        
+        if ($deleted && $filePath && Storage::disk('local')->exists($filePath)) {
+            Storage::disk('local')->delete($filePath);
         }
         
-        return $document->delete();
+        return $deleted;
     }
 }

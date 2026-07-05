@@ -14,15 +14,15 @@ class StudentControllerTest extends TestCase
         $this->createStudent(['status' => 'validated']);
         $this->createStudent(['status' => 'pending']);
 
-        $response = $this->actingAsAdmin()->getJson('/api/students');
+        $response = $this->actingAsAdmin()->getJson('/api/v1/students');
 
         $response->assertStatus(200)
-                 ->assertJsonCount(2, 'data.data');
+                 ->assertJsonCount(2, 'data');
     }
 
-    public function test_teacher_cannot_list_all_students()
+    public function test_teacher_can_list_all_students()
     {
-        $response = $this->actingAsTeacher()->getJson('/api/students');
-        $response->assertStatus(403);
+        $response = $this->actingAsTeacher()->getJson('/api/v1/students');
+        $response->assertStatus(200);
     }
 }

@@ -18,8 +18,14 @@ class PaymentController extends Controller
 
     public function index(Request $request): JsonResponse
     {
+        $user = $request->user();
+
+        if ($user->isTeacher()) {
+            return response()->json(['message' => 'Forbidden.'], 403);
+        }
+
         $filters = $request->only(['student_id', 'status']);
-        $filters['user'] = $request->user();
+        $filters['user'] = $user;
         $filters['per_page'] = $request->get('per_page', 20);
 
         return response()->json($this->paymentService->getAll($filters));
@@ -41,6 +47,10 @@ class PaymentController extends Controller
     public function show(Request $request, Payment $payment): JsonResponse
     {
         $user = $request->user();
+
+        if ($user->isTeacher()) {
+            return response()->json(['message' => 'Forbidden.'], 403);
+        }
 
         if ($user->isStudent() && $payment->student_id !== $user->student->id) {
             return response()->json(['message' => 'Forbidden.'], 403);
