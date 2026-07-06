@@ -79,7 +79,7 @@ export const SCHOOLS = [
   {
     slug: 'hospitality-tourism',
     name: 'École d\'Hôtellerie & Tourisme',
-    color: 'emerald2',
+    color: 'emerald',
     image: '/hospitality-ai.png',
     short: 'Formez-vous aux métiers du tourisme, de l\'hôtellerie et du management hôtelier international.',
     bullets: ['Management Hôtelier','Tourisme Culturel','Stratégies Touristiques','Gestion d\'établissement']

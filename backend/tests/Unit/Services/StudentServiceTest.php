@@ -24,9 +24,9 @@ class StudentServiceTest extends TestCase
         $student = $this->createStudent(['status' => 'pending']);
         $admin = $this->createAdmin();
 
-        $result = $this->studentService->validateStudent($student->id, $admin->id);
+        $result = $this->studentService->validateStudent($student->id, $admin);
 
-        $this->assertTrue($result);
+        $this->assertIsArray($result);
         
         $student->refresh();
         $this->assertEquals('validated', $student->status);
@@ -43,9 +43,9 @@ class StudentServiceTest extends TestCase
         $admin = $this->createAdmin();
 
         $this->expectException(\Exception::class);
-        $this->expectExceptionMessage('Student is already validated or rejected.');
+        $this->expectExceptionMessage('Student is not pending validation.');
 
-        $this->studentService->validateStudent($student->id, $admin->id);
+        $this->studentService->validateStudent($student->id, $admin);
     }
 
     public function test_reject_student_successfully()
@@ -53,9 +53,9 @@ class StudentServiceTest extends TestCase
         $student = $this->createStudent(['status' => 'pending']);
         $admin = $this->createAdmin();
 
-        $result = $this->studentService->rejectStudent($student->id, $admin->id, 'Missing documents');
+        $result = $this->studentService->rejectStudent($student->id, $admin, 'Missing documents');
 
-        $this->assertTrue($result);
+        $this->assertInstanceOf(Student::class, $result);
 
         $student->refresh();
         $this->assertEquals('rejected', $student->status);

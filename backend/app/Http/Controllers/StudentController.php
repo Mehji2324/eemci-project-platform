@@ -32,10 +32,16 @@ class StudentController extends Controller
     public function update(UpdateStudentRequest $request, Student $student): JsonResponse
     {
         DB::transaction(function () use ($request, $student) {
-            if ($request->has('user')) {
-                $student->user->update($request->user);
+            $validated = $request->validated();
+            
+            if (isset($validated['user'])) {
+                $student->user->update($validated['user']);
+                unset($validated['user']);
             }
-            $student->update($request->except('user'));
+            
+            if (!empty($validated)) {
+                $student->update($validated);
+            }
         });
 
         return response()->json([

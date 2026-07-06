@@ -16,14 +16,14 @@ class NoteControllerTest extends TestCase
         $student = $this->createStudent();
         $module = Module::factory()->create(['teacher_id' => $teacher->id]);
 
-        $response = $this->actingAs($teacher->user)->postJson('/api/notes', [
+        $response = $this->actingAs($teacher->user)->postJson('/api/v1/notes', [
             'student_id' => $student->id,
             'module_id' => $module->id,
             'cc_note' => 15,
             'exam_note' => 14
         ]);
 
-        $response->assertStatus(201);
+        $response->assertStatus(200);
         $this->assertDatabaseHas('notes', ['student_id' => $student->id, 'module_id' => $module->id, 'status' => 'pending']);
     }
 }

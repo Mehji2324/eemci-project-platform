@@ -39,17 +39,21 @@ class DocumentService
     {
         if ($file) {
             $document = $this->documentRepo->find($id);
-            
-            // Delete old file
-            if ($document->file_path && Storage::disk('local')->exists($document->file_path)) {
-                Storage::disk('local')->delete($document->file_path);
-            }
+            $oldFilePath = $document->file_path;
             
             // Store new file
             $path = $file->storeAs('documents', Str::uuid() . '.' . $file->getClientOriginalExtension(), 'local');
             $data['file_path'] = $path;
             $data['mime_type'] = $file->getClientMimeType();
             $data['size']      = $file->getSize();
+            
+            $updated = $this->documentRepo->update($id, $data);
+            
+            // Delete old file only after DB updates successfully
+            if ($updated && $oldFilePath && Storage::disk('local')->exists($oldFilePath)) {
+                Storage::disk('local')->delete($oldFilePath);
+            }
+            return $updated;
         }
 
         return $this->documentRepo->update($id, $data);

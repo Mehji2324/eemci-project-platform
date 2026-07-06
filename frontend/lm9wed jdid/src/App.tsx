@@ -51,14 +51,12 @@ const TeacherDocuments = lazy(() => import('./pages/teacher/Documents'));
 const TeacherReports   = lazy(() => import('./pages/teacher/Reports'));
 
 export default function App() {
-  const { theme, lang } = useUiStore();
+  const { lang } = useUiStore();
 
   useEffect(() => {
-    document.documentElement.classList.remove('light', 'dark');
-    document.documentElement.classList.add(theme);
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = lang;
-  }, [theme, lang]);
+  }, [lang]);
 
   return (
     <Suspense fallback={<PageLoader />}>
