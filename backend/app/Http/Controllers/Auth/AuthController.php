@@ -42,6 +42,8 @@ class AuthController extends Controller
         ]);
 
         // Create the student profile with pending status
+        $classe = \App\Models\Classe::where('external_id', $request->programId)->first();
+
         $student = Student::create([
             'user_id'        => $user->id,
             'date_of_birth'  => $request->date_of_birth,
@@ -52,6 +54,8 @@ class AuthController extends Controller
             'guardian_name'  => $request->guardian_name,
             'guardian_phone' => $request->guardian_phone,
             'status'         => 'pending',
+            'filiere_id'     => $classe?->filiere_id,
+            'classe_id'      => $classe?->id,
         ]);
 
         // We store the academic email in the student table too for reference

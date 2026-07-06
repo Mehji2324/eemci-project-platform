@@ -27,7 +27,7 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="bg-primary-950 text-white mt-20 relative overflow-hidden">
+    <footer className="bg-brand-950 text-white mt-20 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 dot-bg opacity-20 pointer-events-none" />
       <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-accent-500/8 blur-[80px] pointer-events-none" />

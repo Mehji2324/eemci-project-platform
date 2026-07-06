@@ -64,6 +64,8 @@ export const AdmissionFunnel: React.FC = () => {
         address: data.address || 'Non renseigné',
         guardian_name: data.guardianName || null,
         guardian_phone: data.guardianPhone || null,
+        school: data.school,
+        programId: data.programId,
       });
       setIsSuccess(true);
     } catch (err: any) {

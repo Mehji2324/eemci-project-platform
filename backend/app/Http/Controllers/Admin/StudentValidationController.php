@@ -55,4 +55,27 @@ class StudentValidationController extends Controller
             'student' => $student->fresh()
         ]);
     }
+
+    public function resetPassword(Request $request, Student $student): JsonResponse
+    {
+        try {
+            $user = $student->user;
+            $newPassword = \Illuminate\Support\Str::random(10);
+
+            $user->update([
+                'password' => \Illuminate\Support\Facades\Hash::make($newPassword),
+                'must_change_password' => true,
+            ]);
+
+            return response()->json([
+                'message' => 'Password reset successfully.',
+                'credentials' => [
+                    'email' => $user->email,
+                    'password' => $newPassword,
+                ],
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error resetting password: ' . $e->getMessage()], 422);
+        }
+    }
 }

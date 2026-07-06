@@ -113,7 +113,7 @@ export default function TeacherGrades() {
                 id="course"
                 value={form.course}
                 onChange={(event) => setForm({ ...form, course: event.target.value })}
-                className="h-10 w-full rounded-lg border border-slate-200 bg-white px-3.5 text-sm text-ink outline-none transition focus:border-primary-500 focus:ring-2 focus:ring-primary-100"
+                className="h-10 w-full rounded-lg border border-surface-border bg-surface px-3.5 text-sm text-ink outline-none transition focus:border-primary-500 focus:ring-2 focus:ring-primary-100"
               >
                 {COURSES.map((course) => <option key={course} value={course}>{course}</option>)}
               </select>
@@ -133,7 +133,7 @@ export default function TeacherGrades() {
                 id="status"
                 value={form.status}
                 onChange={(event) => setForm({ ...form, status: event.target.value as GradeStatus })}
-                className="h-10 w-full rounded-lg border border-slate-200 bg-white px-3.5 text-sm text-ink outline-none transition focus:border-primary-500 focus:ring-2 focus:ring-primary-100"
+                className="h-10 w-full rounded-lg border border-surface-border bg-surface px-3.5 text-sm text-ink outline-none transition focus:border-primary-500 focus:ring-2 focus:ring-primary-100"
               >
                 {STATUSES.map((status) => <option key={status} value={status}>{status}</option>)}
               </select>

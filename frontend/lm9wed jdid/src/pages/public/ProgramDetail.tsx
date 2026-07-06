@@ -35,7 +35,7 @@ export default function ProgramDetail() {
       <section className="py-16">
         <div className="container grid lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2">
-            <div className="flex gap-1 border-b border-slate-200 mb-8 overflow-x-auto">
+            <div className="flex gap-1 border-b border-surface-border mb-8 overflow-x-auto">
               {TABS.map(t => (
                 <button key={t} onClick={()=>setTab(t)}
                   className={cn('px-4 py-3 text-sm font-medium border-b-2 transition whitespace-nowrap',
@@ -56,7 +56,7 @@ export default function ProgramDetail() {
             {tab==='Programme' && (
               <div className="space-y-3">
                 {p.curriculum.map(c => (
-                  <div key={c.semester} className="border border-slate-200 rounded-2xl bg-white overflow-hidden">
+                  <div key={c.semester} className="border border-surface-border rounded-2xl bg-surface overflow-hidden">
                     <button onClick={()=>setOpen(open===c.semester ? null : c.semester)} className="w-full flex items-center justify-between p-5 text-left">
                       <span className="font-display text-lg font-semibold">{c.semester}</span>
                       <ChevronDown className={cn('w-5 h-5 transition', open===c.semester && 'rotate-180')} />
@@ -109,7 +109,7 @@ export default function ProgramDetail() {
                   <div className="flex items-center gap-2"><GraduationCap className="w-4 h-4 text-primary-600" /><span>{p.level}</span></div>
                   <div className="flex items-center gap-2"><Clock className="w-4 h-4 text-primary-600" /><span>{p.duration}</span></div>
                 </div>
-                <div className="border-t border-slate-100 pt-4">
+                <div className="border-t border-surface-border pt-4">
                   <p className="text-xs text-ink-soft">Frais de scolarité</p>
                   <p className="font-display text-2xl font-semibold">{p.tuition}</p>
                 </div>

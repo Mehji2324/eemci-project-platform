@@ -35,11 +35,11 @@ export default function Programs() {
           <Input placeholder="Rechercher un programme..." value={q} onChange={e=>setQ(e.target.value)} className="pl-10" />
         </div>
         <select value={level} onChange={e=>setLevel(e.target.value)}
-          className="h-11 px-4 rounded-xl border border-slate-200 bg-white">
+          className="h-11 px-4 rounded-xl border border-surface-border bg-surface text-ink">
           {LEVELS.map(l => <option key={l}>{l}</option>)}
         </select>
         <select value={school} onChange={e=>setSchool(e.target.value)}
-          className="h-11 px-4 rounded-xl border border-slate-200 bg-white">
+          className="h-11 px-4 rounded-xl border border-surface-border bg-surface text-ink">
           {SCHOOLS.map(s => <option key={s.v} value={s.v}>{s.l}</option>)}
         </select>
       </div>
@@ -47,7 +47,7 @@ export default function Programs() {
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {list.map(p => (
           <Link key={p.slug} to={`/programs/${p.slug}`}
-            className="group p-6 bg-white rounded-2xl border border-slate-200/70 hover:border-primary-300 hover:shadow-soft transition">
+            className="group p-6 bg-surface rounded-2xl border border-surface-border hover:border-primary-300 hover:shadow-soft transition">
             <div className="flex items-center justify-between">
               <Badge tone={p.school==='hospitality-tourism'?'emerald':'primary'}>{p.domain}</Badge>
               <span className={cn('text-xs font-medium',
@@ -55,7 +55,7 @@ export default function Programs() {
             </div>
             <h3 className="font-display text-lg font-semibold mt-4 leading-snug group-hover:text-primary-700">{p.title}</h3>
             <p className="text-sm text-ink-soft mt-2 line-clamp-3">{p.summary}</p>
-            <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-ink-soft">
+            <div className="mt-5 pt-4 border-t border-surface-border flex items-center justify-between text-xs text-ink-soft">
               <span className="flex items-center gap-1.5"><GraduationCap className="w-4 h-4" />{p.level}</span>
               <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" />{p.duration}</span>
             </div>

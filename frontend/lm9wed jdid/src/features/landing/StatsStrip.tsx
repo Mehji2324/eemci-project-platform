@@ -39,7 +39,7 @@ export default function StatsStrip() {
   return (
     <section id="stats" className="relative overflow-hidden py-12 sm:py-14">
       {/* Rich background */}
-      <div className="absolute inset-0 bg-gradient-to-r from-primary-800 via-primary-700 to-primary-800 -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-brand-800 via-brand-700 to-brand-800 -z-10" />
       <div className="absolute inset-0 grid-bg opacity-30 -z-10" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
@@ -64,7 +64,7 @@ export default function StatsStrip() {
                 <Counter value={s.value} suffix={s.suffix} />
               </p>
               <p className="mt-2 text-sm md:text-base font-semibold text-white/90">{t(`stats.stat_${i}.label`)}</p>
-              <p className="mt-1 text-xs text-primary-200/60">{t(`stats.stat_${i}.sub`)}</p>
+              <p className="mt-1 text-xs text-brand-200/60">{t(`stats.stat_${i}.sub`)}</p>
             </motion.div>
           ))}
         </div>

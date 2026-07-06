@@ -10,7 +10,7 @@ export default function CtaBand() {
   return (
     <section className="py-20">
       <div className="container">
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-700 via-primary-600 to-primary-800 p-6 text-white sm:p-10 md:p-16">
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand-700 via-brand-600 to-brand-800 p-6 text-white sm:p-10 md:p-16">
           <div className="absolute inset-0 grid-bg opacity-20" />
           <div className="relative grid items-center gap-8 md:grid-cols-2">
             <div>

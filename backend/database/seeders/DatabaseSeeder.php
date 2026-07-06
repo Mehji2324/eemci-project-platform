@@ -75,5 +75,7 @@ class DatabaseSeeder extends Seeder
                 'status' => 'validated', // Validated so they can login
             ]
         );
+
+        $this->call(ProgramsSeeder::class);
     }
 }

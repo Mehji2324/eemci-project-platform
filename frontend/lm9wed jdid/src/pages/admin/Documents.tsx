@@ -182,21 +182,21 @@ export default function AdminDocuments() {
               { key: 'actions', header: <span className="sr-only">Actions</span>, headerClassName: 'w-10', cell: (s: AppDocument) => (
                 <div className="relative">
                   <button
-                    className="rounded-lg p-1.5 text-ink-soft transition hover:bg-white hover:text-ink"
+                    className="rounded-lg p-1.5 text-ink-soft transition hover:bg-surface hover:text-ink"
                     onClick={(e) => { e.stopPropagation(); setOpenMenu(openMenu === s.id ? null : s.id); }}
                   >
                     <MoreHorizontal className="h-4 w-4" />
                   </button>
                   {openMenu === s.id && (
-                    <div className="absolute right-0 z-50 mt-1 w-48 rounded-lg border border-slate-200 bg-white shadow-lg">
+                    <div className="absolute right-0 z-50 mt-1 w-48 rounded-lg border border-surface-border bg-surface shadow-lg">
                       <button
-                        className="flex w-full items-center gap-2 px-4 py-2 text-sm text-emerald-600 hover:bg-slate-50"
+                        className="flex w-full items-center gap-2 px-4 py-2 text-sm text-emerald-600 hover:bg-surface-muted"
                         onClick={() => { setOpenMenu(null); handleDownload(s); }}
                       >
                         <Download className="h-4 w-4" /> Télécharger
                       </button>
                       <button
-                        className="flex w-full items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-slate-50 border-t border-slate-100"
+                        className="flex w-full items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-surface-muted border-t border-surface-border"
                         onClick={() => handleDelete(s.id)}
                       >
                         <X className="h-4 w-4" /> Supprimer
@@ -224,7 +224,7 @@ export default function AdminDocuments() {
                 <div>
                   <label className="block text-sm font-medium mb-1">Description</label>
                   <textarea 
-                    className="w-full rounded-lg border border-slate-300 p-2 text-sm" 
+                    className="w-full rounded-lg border border-surface-border p-2 text-sm bg-surface text-ink" 
                     rows={3} 
                     value={description} 
                     onChange={e => setDescription(e.target.value)}
@@ -233,7 +233,7 @@ export default function AdminDocuments() {
 
                 <div>
                   <label className="block text-sm font-medium mb-1">Type de document</label>
-                  <select className="w-full rounded-lg border border-slate-300 p-2 text-sm" value={type} onChange={e => setType(e.target.value as any)}>
+                  <select className="w-full rounded-lg border border-surface-border p-2 text-sm bg-surface text-ink" value={type} onChange={e => setType(e.target.value as any)}>
                     {DOCUMENT_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
                   </select>
                 </div>
@@ -241,14 +241,14 @@ export default function AdminDocuments() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium mb-1">Classe (Optionnel)</label>
-                    <select className="w-full rounded-lg border border-slate-300 p-2 text-sm" value={classeId} onChange={e => setClasseId(e.target.value)}>
+                    <select className="w-full rounded-lg border border-surface-border p-2 text-sm bg-surface text-ink" value={classeId} onChange={e => setClasseId(e.target.value)}>
                       <option value="">-- Aucune --</option>
                       {classes.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                     </select>
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-1">Module (Optionnel)</label>
-                    <select className="w-full rounded-lg border border-slate-300 p-2 text-sm" value={moduleId} onChange={e => setModuleId(e.target.value)}>
+                    <select className="w-full rounded-lg border border-surface-border p-2 text-sm bg-surface text-ink" value={moduleId} onChange={e => setModuleId(e.target.value)}>
                       <option value="">-- Aucun --</option>
                       {modules.map(m => <option key={m.id} value={m.id}>{m.name}</option>)}
                     </select>
@@ -266,7 +266,7 @@ export default function AdminDocuments() {
                     type="file" 
                     required 
                     onChange={e => setFile(e.target.files ? e.target.files[0] : null)}
-                    className="w-full rounded-lg border border-slate-300 p-2 text-sm bg-slate-50"
+                    className="w-full rounded-lg border border-surface-border p-2 text-sm bg-surface-muted text-ink"
                   />
                 </div>
 

@@ -6,7 +6,7 @@ const CATEGORY_COLORS: Record<string, { bg: string; text: string; dot: string }>
   'Académique': { bg: 'bg-primary-50', text: 'text-primary-700', dot: 'bg-primary-400' },
   'Entreprise': { bg: 'bg-accent-50', text: 'text-accent-700', dot: 'bg-accent-400' },
   'Certification': { bg: 'bg-teal-500/10', text: 'text-teal-700', dot: 'bg-teal-500' },
-  'Institutionnel': { bg: 'bg-slate-100', text: 'text-slate-600', dot: 'bg-slate-400' },
+  'Institutionnel': { bg: 'bg-surface-muted', text: 'text-ink-soft', dot: 'bg-slate-400' },
 };
 
 // Duplicate the list to create a seamless infinite marquee
@@ -73,7 +73,7 @@ export default function Partners() {
                 rel="noopener noreferrer"
                 aria-label={`${t('partners.label')} : ${p.name}`}
                 className={cn(
-                  'group/card flex w-56 flex-shrink-0 flex-col items-center gap-3 rounded-2xl border border-surface-border bg-white p-6 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-primary-200 hover:shadow-md'
+                  'group/card flex w-56 flex-shrink-0 flex-col items-center gap-3 rounded-2xl border border-surface-border bg-surface p-6 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-primary-200 hover:shadow-md'
                 )}
               >
                 {/* Logo */}
@@ -123,7 +123,7 @@ export default function Partners() {
 
       {/* Bottom accreditation strip */}
       <div className="container mt-14">
-        <div className="flex flex-col items-center gap-6 rounded-2xl border border-surface-border bg-white p-6 shadow-xs md:flex-row md:gap-10 md:p-8">
+        <div className="flex flex-col items-center gap-6 rounded-2xl border border-surface-border bg-surface p-6 shadow-xs md:flex-row md:gap-10 md:p-8">
           <div className="flex-1 text-center md:text-start">
             <p className="text-xs font-bold uppercase tracking-widest text-accent-500 mb-1">
               {t('partners.accreditation.title2')}

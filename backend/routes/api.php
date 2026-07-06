@@ -62,6 +62,7 @@ Route::prefix('v1')->group(function () {
             Route::get('/admin/students/pending', [StudentValidationController::class, 'pending']);
             Route::post('/admin/students/{student}/validate', [StudentValidationController::class, 'validate']);
             Route::post('/admin/students/{student}/reject', [StudentValidationController::class, 'reject']);
+            Route::post('/admin/students/{student}/reset-password', [StudentValidationController::class, 'resetPassword']);
 
             // Teachers CRUD
             Route::apiResource('teachers', TeacherController::class)->except(['show']);

@@ -24,7 +24,7 @@ export default function SchoolsBlock() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-xs transition hover:border-primary-200 hover:shadow-soft"
+            className="group relative overflow-hidden rounded-2xl border border-surface-border bg-surface shadow-xs transition hover:border-primary-200 hover:shadow-soft"
           >
             <div className="relative h-56 overflow-hidden sm:h-64">
               <img

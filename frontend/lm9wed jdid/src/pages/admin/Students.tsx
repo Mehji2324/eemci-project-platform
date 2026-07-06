@@ -14,7 +14,7 @@ export default function Students() {
   const [openMenu, setOpenMenu] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [credentialsView, setCredentialsView] = useState<{name:string, matricule:string, email:string} | null>(null);
-  const [credentials, setCredentials] = useState<{email: string, password: string} | null>(null);
+  const [credentials, setCredentials] = useState<{email: string, password: string, matricule?: string, isNew?: boolean} | null>(null);
   const [rejectInput, setRejectInput] = useState<{studentId: number, reason: string} | null>(null);
   const [isCredentialsViewOpen, setIsCredentialsViewOpen] = useState(false);
   const [selectedStudentForCredentials, setSelectedStudentForCredentials] = useState<any>(null);
@@ -96,8 +96,14 @@ export default function Students() {
           const validateRes = await api.post(`/admin/students/${student.id}/validate`, {});
           const creds = validateRes.data?.credentials;
           if (creds) {
-            setCredentials({ email: creds.email, password: creds.password });
+            setCredentials({ 
+              email: creds.email, 
+              password: creds.password, 
+              matricule: student.matricule || '—',
+              isNew: true 
+            });
           }
+
         }
       }
       
@@ -157,17 +163,17 @@ export default function Students() {
               { key: 'actions', header: <span className="sr-only">Actions</span>, headerClassName: 'w-10', cell: (s: any) => (
                 <div className="relative" data-dropdown="true">
                   <button
-                    className="rounded-lg p-1.5 text-ink-soft transition hover:bg-white hover:text-ink"
+                    className="rounded-lg p-1.5 text-ink-soft transition hover:bg-surface hover:text-ink"
                     aria-label="Actions étudiant"
                     onClick={(e) => { e.stopPropagation(); setOpenMenu(openMenu === s.id ? null : s.id); }}
                   >
                     <MoreHorizontal className="h-4 w-4" />
                   </button>
                   {openMenu === s.id && (
-                    <div className="absolute right-0 z-50 mt-1 w-40 rounded-lg border border-slate-200 bg-white shadow-lg">
+                    <div className="absolute right-0 z-50 mt-1 w-40 rounded-lg border border-surface-border bg-surface shadow-lg">
                       {s.status === 'pending' ? (
                         <>
-                          <button className="flex w-full items-center gap-2 px-4 py-2 text-sm text-emerald-600 hover:bg-slate-50"
+                          <button className="flex w-full items-center gap-2 px-4 py-2 text-sm text-emerald-600 hover:bg-surface-muted"
                             onClick={async (e) => {
                               e.stopPropagation();
                               try {
@@ -182,7 +188,7 @@ export default function Students() {
                             }}>
                             Valider
                           </button>
-                          <button className="flex w-full items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-slate-50"
+                          <button className="flex w-full items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-surface-muted"
                             onClick={(e) => {
                               e.stopPropagation();
                               setRejectInput({ studentId: s.id, reason: '' });
@@ -193,19 +199,27 @@ export default function Students() {
                         </>
                       ) : (
                         <>
-                          <button className="flex w-full items-center gap-2 px-4 py-2 text-sm text-slate-600 hover:bg-slate-50"
-                            onClick={(e) => {
+                          <button className="flex w-full items-center gap-2 px-4 py-2 text-sm text-ink-soft hover:bg-surface-muted"
+                            onClick={async (e) => {
                               e.stopPropagation();
-                              setCredentialsView({
-                                name: (s.user?.first_name ?? '') + ' ' + (s.user?.last_name ?? ''),
-                                matricule: s.matricule ?? '—',
-                                email: s.user?.email ?? '—',
-                              });
+                              try {
+                                const res = await api.post(`/admin/students/${s.id}/reset-password`, {});
+                                const creds = res.data?.credentials;
+                                if (creds) {
+                                  setCredentials({ 
+                                    email: creds.email, 
+                                    password: creds.password, 
+                                    matricule: s.matricule ?? '—' 
+                                  });
+                                }
+                              } catch(err: any) { 
+                                alert(err.response?.data?.message || 'Erreur lors de la récupération'); 
+                              }
                               setOpenMenu(null);
                             }}>
                             Voir credentials
                           </button>
-                          <button className="flex w-full items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-slate-50"
+                          <button className="flex w-full items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-surface-muted"
                             onClick={async (e) => {
                               e.stopPropagation();
                               if (!confirm('Supprimer cet étudiant?')) return;
@@ -255,9 +269,9 @@ export default function Students() {
                     <Input label="Nom" required value={formData.last_name} onChange={e => setFormData({...formData, last_name: e.target.value})} />
                     <Input label="Téléphone" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} />
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1">Genre</label>
+                      <label className="block text-sm font-medium text-ink-soft mb-1">Genre</label>
                       <select 
-                        className="w-full rounded-lg border border-slate-300 p-2 text-sm focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all" 
+                        className="w-full rounded-lg border border-surface-border bg-surface p-2 text-sm text-ink focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all" 
                         value={formData.gender} 
                         onChange={e => setFormData({...formData, gender: e.target.value})}
                       >
@@ -268,7 +282,7 @@ export default function Students() {
                     <Input label="Adresse" value={formData.address} onChange={e => setFormData({...formData, address: e.target.value})} />
                   </div>
                 </div>
-                <div className="flex justify-end pt-4 border-t border-slate-100">
+                <div className="flex justify-end pt-4 border-t border-surface-border">
                   <Button type="submit" className="w-full sm:w-auto px-8">Enregistrer l'étudiant</Button>
                 </div>
               </form>
@@ -324,62 +338,32 @@ export default function Students() {
         </div>
       )}
 
-      {credentialsView && (
+      {credentials && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
           <div className="w-full max-w-md rounded-xl bg-white p-8 shadow-xl">
             <div className="mb-6">
-              <h2 className="text-lg font-semibold text-slate-900">Informations de connexion</h2>
-              <p className="text-sm text-slate-500">{credentialsView.name}</p>
+              <h2 className="text-lg font-semibold text-slate-900">
+                {credentials.isNew ? 'Étudiant ajouté avec succès' : 'Informations de connexion'}
+              </h2>
+              {!credentials.isNew && <p className="text-sm text-slate-500">Les identifiants ont été générés automatiquement</p>}
             </div>
             <div className="space-y-3 rounded-lg bg-slate-50 p-4">
               <div>
                 <p className="text-xs font-medium uppercase tracking-wide text-slate-400">Matricule</p>
-                <p className="mt-1 font-mono text-sm font-medium text-slate-900">{credentialsView.matricule}</p>
+                <p className="mt-1 font-mono text-sm font-medium text-slate-900">{credentials.matricule}</p>
               </div>
               <div className="border-t border-slate-200 pt-3">
-                <p className="text-xs font-medium uppercase tracking-wide text-slate-400">Email académique</p>
-                <p className="mt-1 font-mono text-sm font-medium text-slate-900">{credentialsView.email}</p>
-              </div>
-              <div className="border-t border-slate-200 pt-3">
-                <p className="text-xs font-medium uppercase tracking-wide text-slate-400">Mot de passe</p>
-                <p className="mt-1 text-sm text-slate-500 italic">Réinitialisable par l'administrateur</p>
-              </div>
-            </div>
-            <button
-              onClick={() => setCredentialsView(null)}
-              className="mt-6 w-full rounded-lg bg-slate-800 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-900"
-            >
-              Fermer
-            </button>
-          </div>
-        </div>
-      )}
-
-      {credentials && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="w-full max-w-md rounded-xl bg-white p-8 shadow-xl">
-            <div className="mb-6 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100">
-                <svg className="h-5 w-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <div>
-                <h2 className="text-lg font-semibold text-slate-900">Étudiant ajouté avec succès</h2>
-                <p className="text-sm text-slate-500">Les identifiants ont été générés automatiquement</p>
-              </div>
-            </div>
-            <div className="space-y-3 rounded-lg bg-slate-50 p-4">
-              <div>
                 <p className="text-xs font-medium uppercase tracking-wide text-slate-400">Email académique</p>
                 <p className="mt-1 font-mono text-sm font-medium text-slate-900">{credentials.email}</p>
               </div>
               <div className="border-t border-slate-200 pt-3">
-                <p className="text-xs font-medium uppercase tracking-wide text-slate-400">Mot de passe temporaire</p>
+                <p className="text-xs font-medium uppercase tracking-wide text-slate-400">Mot de passe</p>
                 <p className="mt-1 font-mono text-sm font-medium text-slate-900">{credentials.password}</p>
               </div>
             </div>
-            <p className="mt-4 text-xs text-slate-400">L'étudiant devra changer son mot de passe lors de la première connexion.</p>
+            {credentials.isNew && (
+              <p className="mt-4 text-xs text-slate-400">L'étudiant devra changer son mot de passe lors de la première connexion.</p>
+            )}
             <button
               onClick={() => setCredentials(null)}
               className="mt-6 w-full rounded-lg bg-slate-800 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-900"

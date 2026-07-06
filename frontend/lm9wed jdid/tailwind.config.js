@@ -23,6 +23,13 @@ export default {
           900: 'hsl(var(--primary-900))',
           950: 'hsl(var(--primary-950))',
         },
+        brand: {
+          200: 'hsl(var(--brand-200))',
+          700: 'hsl(var(--brand-700))',
+          800: 'hsl(var(--brand-800))',
+          900: 'hsl(var(--brand-900))',
+          950: 'hsl(var(--brand-950))',
+        },
         accent: { 
           50:  'hsl(var(--accent-50))',
           100: 'hsl(var(--accent-100))',

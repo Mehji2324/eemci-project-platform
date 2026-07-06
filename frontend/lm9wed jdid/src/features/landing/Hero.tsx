@@ -111,7 +111,7 @@ export default function Hero() {
               {TRUST_PILLS.map(({ icon: Icon, text }) => (
                 <span
                   key={text}
-                  className="inline-flex items-center gap-2 rounded-full border border-surface-border bg-white/85 px-4 py-2 text-sm text-ink-soft shadow-xs"
+                  className="inline-flex items-center gap-2 rounded-full border border-surface-border bg-surface/85 px-4 py-2 text-sm text-ink-soft shadow-xs"
                 >
                   <Icon className="h-4 w-4 shrink-0 text-primary-600" />
                   {text}
@@ -133,7 +133,7 @@ export default function Hero() {
               <div className="absolute -inset-6 -z-20 rounded-[2.25rem] bg-gradient-to-br from-primary-50 to-transparent opacity-60 sm:rounded-[2.5rem]" />
 
               {/* Main image */}
-              <div className="relative overflow-hidden rounded-[1.5rem] border-4 border-white shadow-lg sm:rounded-[2rem]">
+              <div className="relative overflow-hidden rounded-[1.5rem] border-4 border-surface shadow-lg sm:rounded-[2rem]">
                 <img
                   src="/hero-ai.png"
                   alt={t('hero.img_alt')}

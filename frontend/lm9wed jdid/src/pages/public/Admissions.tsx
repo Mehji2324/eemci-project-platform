@@ -35,7 +35,7 @@ export default function Admissions() {
       <Section title="Documents à fournir" eyebrow="Dossier" className="bg-surface-muted">
         <div className="grid md:grid-cols-2 gap-5">
           {['Copie certifiée du baccalauréat','Relevés de notes des dernières années','Pièce d\'identité (CIN ou passeport)','CV à jour','Lettre de motivation','2 photos d\'identité récentes'].map(d => (
-            <div key={d} className="p-5 bg-white rounded-2xl border border-slate-200/70">
+            <div key={d} className="p-5 bg-surface rounded-2xl border border-surface-border">
               <p className="text-ink">{d}</p>
             </div>
           ))}

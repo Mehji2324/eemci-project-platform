@@ -9,7 +9,7 @@ class EloquentStudentRepository implements StudentRepositoryInterface
 {
     public function all(array $filters = [])
     {
-        return Student::with('user')
+        return Student::with('user', 'filiere', 'classe')
             ->when(isset($filters['status']), fn($q) => $q->where('status', $filters['status']))
             ->when(isset($filters['filiere_id']), fn($q) => $q->where('filiere_id', $filters['filiere_id']))
             ->when(isset($filters['classe_id']), fn($q) => $q->where('classe_id', $filters['classe_id']))
@@ -25,7 +25,7 @@ class EloquentStudentRepository implements StudentRepositoryInterface
 
     public function find(int $id)
     {
-        return Student::with('user')->findOrFail($id);
+        return Student::with('user', 'filiere', 'classe')->findOrFail($id);
     }
 
     public function create(array $data)

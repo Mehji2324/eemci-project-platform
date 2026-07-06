@@ -32,7 +32,7 @@ export default function ProgramsShowcase() {
             aria-pressed={filter === l}
             className={cn(
               'rounded-full px-4 py-2 text-sm font-medium transition',
-              filter === l ? 'bg-primary-600 text-white shadow-xs' : 'border border-slate-200 bg-white text-ink-soft hover:bg-surface-subtle hover:text-ink'
+              filter === l ? 'bg-primary-600 text-white shadow-xs' : 'border border-surface-border bg-surface text-ink-soft hover:bg-surface-subtle hover:text-ink'
             )}
           >
             {t(`showcase.levels.${l}`)}
@@ -50,11 +50,11 @@ export default function ProgramsShowcase() {
             transition={{ duration: 0.4, delay: i * 0.05 }}
           >
             <Link to={`/programs/${p.slug}`} className="group block h-full">
-              <div className="flex h-full flex-col rounded-2xl border border-slate-200/80 bg-white p-6 transition hover:border-primary-300 hover:shadow-soft">
+              <div className="flex h-full flex-col rounded-2xl border border-surface-border bg-surface p-6 transition hover:border-primary-300 hover:shadow-soft">
                 <Badge tone={p.school === 'hospitality-tourism' ? 'emerald' : 'primary'}>{p.domain}</Badge>
                 <h3 className="mt-3 font-display text-lg font-semibold leading-snug text-ink transition group-hover:text-primary-700">{p.title}</h3>
                 <p className="text-sm text-ink-soft mt-2 line-clamp-2">{p.summary}</p>
-                <div className="mt-auto flex items-center justify-between gap-3 border-t border-slate-100 pt-4 text-xs text-ink-soft">
+                <div className="mt-auto flex items-center justify-between gap-3 border-t border-surface-border pt-4 text-xs text-ink-soft">
                   <span className="flex items-center gap-1.5"><GraduationCap className="w-4 h-4" />{p.level}</span>
                   <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" />{p.duration}</span>
                 </div>
