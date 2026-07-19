@@ -4,3 +4,7 @@ backend/database/database.sqlite
 backend/vendor/
 frontend/lm9wed jdid/node_modules/
 frontend/lm9wed jdid/dist/
+
+.DS_Store
+__MACOSX/
+._*
