@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: eemci-backend
+    env: docker
+    plan: free
+    rootDir: backend
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_KEY
+        value: base64:ExbA4ZEYMXqkenafd2It04eXBZSdBhLpfunJGNMsc7U=
